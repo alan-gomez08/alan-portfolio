@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  /* ¡La magia del scroll suave! */
+  scroll-behavior: smooth; 
+}
+
+body {
+  @apply bg-zinc-950 text-gray-200;
+}
+
+/* Ocultar scrollbar pero mantener funcionalidad */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

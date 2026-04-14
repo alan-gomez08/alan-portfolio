@@ -1,9 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../../context/LanguageContext'; // <-- Importamos el hook
+import { useLanguage } from '../../context/LanguageContext';
 
 export function About() {
-  const { t } = useLanguage(); // <-- Inicializamos el traductor
+  const { t } = useLanguage();
 
   const socialLinks = [
     { name: "LinkedIn", url: "#" }, 

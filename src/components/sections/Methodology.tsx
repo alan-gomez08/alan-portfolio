@@ -1,11 +1,9 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../../context/LanguageContext'; // <-- Importamos el hook
+import { useLanguage } from '../../context/LanguageContext';
 
 export function Methodology() {
-  const { t } = useLanguage(); // <-- Inicializamos el traductor
+  const { t } = useLanguage();
 
-  // Movemos el array adentro para que pueda usar la función t()
   const methods = [
     { 
       num: "01", 

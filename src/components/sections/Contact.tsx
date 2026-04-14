@@ -1,9 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../../context/LanguageContext'; // <-- Importamos el hook
+import { useLanguage } from '../../context/LanguageContext';
 
 export function Contact() {
-  const { t } = useLanguage(); // <-- Inicializamos el traductor
+  const { t } = useLanguage();
 
   // Mezclamos links estáticos con la traducción dinámica para el CV
   const footerLinks = ['LinkedIn', 'GitHub', 'Gumroad', t('contact', 'resume')];

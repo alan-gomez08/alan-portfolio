@@ -1,5 +1,4 @@
-import React from 'react';
-import { LanguageProvider } from './context/LanguageContext'; // <-- Importar esto
+import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/layout/Navbar';
 import { Hero } from './components/sections/Hero';
 import { TechStack } from './components/sections/TechStack';
@@ -12,7 +11,6 @@ import { Contact } from './components/sections/Contact';
 
 function App() {
   return (
-    // 👇 ABRAZAMOS TODO CON EL PROVIDER 👇
     <LanguageProvider>
       <div className="min-h-screen bg-zinc-950 text-gray-200 font-sans flex flex-col items-center overflow-x-hidden selection:bg-emerald-500/30 selection:text-emerald-400">
         

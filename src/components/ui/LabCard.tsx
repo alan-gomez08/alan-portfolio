@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type ReactNode } from 'react'; // Importamos ReactNode como tipo
 import { motion } from 'framer-motion';
 // Importamos el resaltador y el tema de VS Code
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -8,7 +8,7 @@ interface LabCardProps {
   title: string;
   description: string;
   tags: string[];
-  children: React.ReactNode;
+  children: ReactNode; // Cambiado de React.ReactNode a ReactNode
   index: number;
   codeSnippet: string;
 }
@@ -98,12 +98,12 @@ export function LabCard({ title, description, tags, children, index, codeSnippet
               customStyle={{
                 margin: 0,
                 padding: '1rem',
-                background: 'rgba(0, 0, 0, 0.4)', // Fondo oscuro transparente para que combine con tu diseño
+                background: 'rgba(0, 0, 0, 0.4)', 
                 height: '100%',
                 fontSize: '10px',
                 lineHeight: '1.6',
               }}
-              wrapLongLines={true} // Evita el scroll horizontal si una línea es muy larga
+              wrapLongLines={true} 
             >
               {codeSnippet}
             </SyntaxHighlighter>

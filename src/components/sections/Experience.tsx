@@ -1,11 +1,9 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../../context/LanguageContext'; // <-- Importamos el hook
+import { useLanguage } from '../../context/LanguageContext';
 
 export function Experience() {
-  const { t } = useLanguage(); // <-- Inicializamos el traductor
+  const { t } = useLanguage();
 
-  // Movemos el array adentro para que use t()
   const experiences = [
     { 
       period: t('experience', 'exp1_period'), 

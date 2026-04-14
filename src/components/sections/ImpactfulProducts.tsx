@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -6,7 +6,6 @@ export function ImpactfulProducts() {
   const [activeProject, setActiveProject] = useState(0);
   const { t } = useLanguage();
 
-  // El array se mueve adentro para poder usar la función 't'
   const products = [
     {
       id: 1,

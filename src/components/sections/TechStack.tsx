@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function TechStack() {
   // Tu arsenal actualizado exactamente con lo que pediste
   const tools = [

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LabCard } from '../ui/LabCard';
 import { useLanguage } from '../../context/LanguageContext';
@@ -8,7 +8,7 @@ import { useLanguage } from '../../context/LanguageContext';
 // ==========================================
 const SpringToggle = () => {
   const [isActive, setIsActive] = useState(false);
-  const { t } = useLanguage(); // Traductor inyectado
+  const { t } = useLanguage(); 
   
   return (
     <div className="flex flex-col items-center gap-3">
@@ -34,7 +34,7 @@ const SpringToggle = () => {
 
 const MorphingLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useLanguage(); // Traductor inyectado
+  const { t } = useLanguage();
 
   return (
     <div className="relative w-full h-full flex items-center justify-center">
@@ -78,7 +78,7 @@ const MorphingLayout = () => {
 const AIPrompt = () => {
   const [inputValue, setInputValue] = useState("");
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
-  const { t } = useLanguage(); // Traductor inyectado
+  const { t } = useLanguage();
 
   const handleRun = () => {
     if (!inputValue) return;
@@ -140,7 +140,6 @@ export function TheLaboratory() {
   const { t } = useLanguage();
 
   return (
-    // ACÁ ESTÁ EL CAMBIO DE CLASES: pt-10 pb-24 scroll-mt-14
     <section id="laboratory" className="w-full flex justify-center pt-10 pb-24 border-t border-white/5 scroll-mt-14">
       <div className="w-full max-w-[1533px] px-6 md:px-40 flex flex-col gap-12">
         

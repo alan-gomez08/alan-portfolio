@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion'; // Asegurate de tener este import
+import { motion } from 'framer-motion';
 
 interface ProjectCardProps {
   number: string;
@@ -9,7 +8,7 @@ interface ProjectCardProps {
   roles: string[];
   tags: string[];
   linkText?: string;
-  index: number; // Agregamos el index para escalonar la animación si queremos
+  index: number;
 }
 
 export function ProjectCard({ 
@@ -23,12 +22,11 @@ export function ProjectCard({
   index
 }: ProjectCardProps) {
   return (
-    // Transformamos el div en motion.div para animar al scrollear
     <motion.div 
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, margin: "-50px" }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }} // El delay usa el index para escalonarlas
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
       className="group w-full max-w-[594px] h-[458px] relative bg-zinc-950/70 rounded-xs outline outline-1 outline-offset-[-1px] outline-white/5 overflow-hidden hover:outline-white/20 transition-all duration-300"
     >
       

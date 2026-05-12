@@ -2,13 +2,18 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 
-export function ImpactfulProducts() {
+interface ImpactfulProductsProps {
+  onOpenCaseStudy?: (id: string) => void;
+}
+
+export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
   const [activeProject, setActiveProject] = useState(0);
   const { t } = useLanguage();
 
   const products = [
     {
       id: 1,
+      urlId: 'nuxio', // ID que usamos para abrir el case study
       title: "Nuxio Rescue",
       category: t('products', 'nuxio_cat'),
       description: t('products', 'nuxio_desc'),
@@ -17,6 +22,7 @@ export function ImpactfulProducts() {
     },
     {
       id: 2,
+      urlId: 'electro', // Para futuros case studies
       title: "ElectroShop",
       category: t('products', 'electro_cat'),
       description: t('products', 'electro_desc'),
@@ -25,6 +31,7 @@ export function ImpactfulProducts() {
     },
     {
       id: 3,
+      urlId: 'figma', // Para futuros case studies
       title: "Figma Make Prompts",
       category: t('products', 'figma_cat'),
       description: t('products', 'figma_desc'),
@@ -110,6 +117,19 @@ export function ImpactfulProducts() {
                   <p className="text-gray-300 text-sm md:text-base max-w-md leading-relaxed font-sans drop-shadow-lg">
                     {products[activeProject].description}
                   </p>
+
+                  <button 
+                    onClick={() => onOpenCaseStudy && products[activeProject].urlId && onOpenCaseStudy(products[activeProject].urlId)}
+                    className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6"
+                  >
+                    <span className="text-white text-xs font-sans font-medium uppercase tracking-tight">
+                      {t('products', 'link') || "View Case Study"}
+                    </span>
+                    <span className="text-white text-xs transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+
                 </div>
               </motion.div>
             </AnimatePresence>

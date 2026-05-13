@@ -40,7 +40,8 @@ export function CognitiveComplexity() {
               <img 
                 src="/NuxioRescueimg/step1-problem.png" 
                 alt="The Problem Mockup" 
-                className="w-full h-auto object-contain rounded-2xl drop-shadow-2xl border border-gray-100"
+                /* 👇 Eliminamos drop-shadow, border y rounded para mostrar el PNG puro 👇 */
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -58,7 +59,8 @@ export function CognitiveComplexity() {
               <img 
                 src="/NuxioRescueimg/step2-wireframe.png" 
                 alt="Wireframes Mockup" 
-                className="w-full h-auto object-contain rounded-2xl drop-shadow-2xl border border-gray-100"
+                /* 👇 Eliminamos drop-shadow, border y rounded para mostrar el PNG puro 👇 */
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -76,7 +78,8 @@ export function CognitiveComplexity() {
               <img 
                 src="/NuxioRescueimg/step3-solution.png" 
                 alt="The Solution Mockup" 
-                className="w-full h-auto object-contain rounded-2xl drop-shadow-2xl border border-gray-100"
+                /* 👇 Eliminamos drop-shadow, border y rounded para mostrar el PNG puro 👇 */
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>

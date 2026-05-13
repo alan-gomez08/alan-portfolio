@@ -9,10 +9,13 @@ export function AtomicComponents() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="w-full mt-16 md:mt-24 mb-24 font-['Poppins'] px-4"
     >
-      <div className="w-full xl:w-fit mx-auto bg-gray-50 rounded-[32px] shadow-md px-8 py-12 flex flex-col xl:flex-row items-center justify-center gap-16">
+      <div className="w-full xl:w-fit mx-auto bg-gray-50 rounded-[32px] shadow-md px-8 py-12 flex flex-col xl:flex-row items-start justify-center gap-16">
         
-        {/* Columna Visual (Imagen): A LA IZQUIERDA */}
-        <div className="w-full xl:w-[614px] shrink-0 flex items-center">
+        {/* Columna Visual (Imagen): 
+            - order-2 (en mobile se va para abajo)
+            - xl:order-1 (en desktop vuelve a ser primero/izquierda)
+        */}
+        <div className="w-full xl:w-[614px] shrink-0 flex items-center order-2 xl:order-1">
           <img 
             src="/NuxioRescueimg/AtomicComponets.png" 
             alt="Nuxio Atomic Components" 
@@ -20,8 +23,11 @@ export function AtomicComponents() {
           />
         </div>
 
-        {/* Columna de Texto: A LA DERECHA - Centrada verticalmente con respecto a la imagen */}
-        <div className="w-full xl:w-[460px] flex flex-col justify-center items-start gap-6 shrink-0 h-full">
+        {/* Columna de Texto: 
+            - order-1 (en mobile se pone primero/arriba)
+            - xl:order-2 (en desktop se pone segundo/derecha)
+        */}
+        <div className="w-full xl:w-[460px] flex flex-col justify-start items-start gap-6 shrink-0 order-1 xl:order-2">
           
           <div className="px-2 py-1 bg-blue-50 rounded-sm flex justify-center items-center gap-2.5">
             <span className="text-blue-600 text-xs font-bold font-mono uppercase leading-4 tracking-wide">

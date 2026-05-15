@@ -7,7 +7,8 @@ export function DesignPrinciples() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-full flex flex-col items-center gap-12 mt-16 md:mt-24 font-['Poppins']"
+      // Le agregamos px-4 acá para que respire en mobile
+      className="w-full flex flex-col items-center gap-12 mt-16 md:mt-24 font-['Poppins'] px-4"
     >
       {/* Título de la Sección */}
       <div className="w-full text-center">
@@ -16,8 +17,9 @@ export function DesignPrinciples() {
         </h2>
       </div>
 
-      {/* Grilla de Principios (Responsive: 1 columna en móvil, 2 en desktop) */}
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Grilla de Principios 
+          Cambiamos max-w-5xl por max-w-[1206px] para que tenga el mismo ancho exacto que el Hero */}
+      <div className="w-full max-w-[1206px] grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
         
         {/* Tarjeta 1: Zero Rewrite */}
         <div className="bg-gray-50 p-8 md:p-10 flex flex-col gap-8 rounded-2xl md:rounded-tl-[40px] border border-gray-100 hover:shadow-lg transition-shadow duration-300">

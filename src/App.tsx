@@ -11,9 +11,10 @@ import { TheLaboratory } from './components/sections/TheLaboratory';
 import { About } from './components/sections/About';
 import { Contact } from './components/sections/Contact';
 
-// Importamos el layout y tu nuevo caso de estudio
+// Importamos el layout y tus casos de estudio
 import { CaseStudyLayout } from './components/layout/CaseStudyLayout';
 import { NuxioRescue } from './components/pages/NuxioRescue';
+import { AgenticOS } from './components/pages/AgenticOS'; // <-- 1. IMPORTAMOS AGENTIC OS
 
 function App() {
   // Estado para controlar qué caso de estudio está abierto
@@ -35,9 +36,14 @@ function App() {
       <div className="min-h-screen bg-zinc-950 text-gray-200 font-sans flex flex-col items-center overflow-x-hidden selection:bg-emerald-500/30 selection:text-emerald-400">
         
         <AnimatePresence mode="wait">
+          {/* 2. LÓGICA DE RUTAS ACTUALIZADA */}
           {activeCaseStudy === 'nuxio' ? (
             <CaseStudyLayout key="case-study-nuxio" onBack={handleCloseCaseStudy}>
               <NuxioRescue />
+            </CaseStudyLayout>
+          ) : activeCaseStudy === 'agentic' ? ( // <-- 3. AGREGAMOS LA RUTA PARA AGENTIC
+            <CaseStudyLayout key="case-study-agentic" onBack={handleCloseCaseStudy}>
+              <AgenticOS />
             </CaseStudyLayout>
           ) : (
             <motion.div 

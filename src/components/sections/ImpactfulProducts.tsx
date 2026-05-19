@@ -31,12 +31,12 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
     },
     {
       id: 3,
-      urlId: 'figma', // Para futuros case studies
-      title: "Figma Make Prompts",
-      category: t('products', 'figma_cat'),
-      description: t('products', 'figma_desc'),
-      image: "https://placehold.co/800x600/18181b/52525b?text=Figma+AI",
-      tags: ["AI Prompts", "MD3", "Systems"]
+      urlId: 'agentic', // <-- Este ID es clave para tu router/función
+      title: "Agentic OS",
+      category: "AI B2B SAAS", // Podés cambiarlo a t('products', 'agentic_cat') luego
+      description: "The design of a complete B2B SaaS (CRM / ERP) from scratch for a real estate agency, acting as a Solo Product Designer.",
+      image: "/AgenticOsimg/hero-dashboard.png", // Levantamos la imagen real que exportaste
+      tags: ["UX/UI Design", "Design System", "0 to 1"]
     }
   ];
 
@@ -67,6 +67,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProject(index)}
+                onClick={() => onOpenCaseStudy && product.urlId && onOpenCaseStudy(product.urlId)} // Permite clickear la lista entera también
                 className={`py-6 border-b border-white/5 cursor-pointer transition-all duration-300 flex items-center justify-between group ${
                   activeProject === index ? 'opacity-100 pl-4' : 'opacity-40 hover:opacity-70'
                 }`}
@@ -107,7 +108,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                 />
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 flex flex-col justify-end p-8 md:p-12">
-                  <div className="flex gap-3 mb-4">
+                  <div className="flex flex-wrap gap-2 md:gap-3 mb-4">
                     {products[activeProject].tags.map((tag, i) => (
                       <span key={i} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-white text-[10px] font-mono uppercase tracking-wider border border-white/10">
                         {tag}

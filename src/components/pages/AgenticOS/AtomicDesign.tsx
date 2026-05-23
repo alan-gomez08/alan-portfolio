@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 
-// Agregamos la propiedad 'boxHeight' para respetar las alturas exactas que te dio Figma
+// Estandarizamos el boxHeight a 'lg:h-full' para que todas las cajas 
+// copien automáticamente la altura de la columna de texto + código.
 const atomicBlocks = [
   {
     id: 1,
@@ -9,7 +10,7 @@ const atomicBlocks = [
     description: "In developer tools, typing speed is key. We designed Focus Rings in high-contrast cyan and error states in vibrant red to provide immediate feedback without relying on long text, complying with WCAG contrast standards in Dark Mode.",
     codeImg: "/AgenticOsimg/Inpunt.tsx code 1.svg",
     uiImg: "/AgenticOsimg/Input 1.svg",
-    boxHeight: "h-[350px] md:h-[468px]", // Altura de Figma: 468px
+    boxHeight: "h-[350px] lg:h-full", 
     reverse: false
   },
   {
@@ -19,7 +20,7 @@ const atomicBlocks = [
     description: "We reduced cognitive load by eliminating vertical dividing lines and using generous padding. We implemented monospaced typography to align financial metrics and statuses with semantic indicators, allowing the user to scan complex logs in seconds.",
     codeImg: "/AgenticOsimg/data table code 1.svg",
     uiImg: "/AgenticOsimg/data table 1.svg",
-    boxHeight: "h-[350px] md:h-[466px]", // Altura de Figma: 466px
+    boxHeight: "h-[350px] lg:h-full", 
     reverse: true
   },
   {
@@ -29,7 +30,7 @@ const atomicBlocks = [
     description: "We isolate critical data on quick-read modular cards. For the conversion (Pricing), we inverted the visual weight: we reduced the noise of secondary features and gave typographical prominence to the price and the CTA, ensuring an upgrade flow without distractions.",
     codeImg: "/AgenticOsimg/pricing code 1.svg",
     uiImg: "/AgenticOsimg/Pricing 1.svg",
-    boxHeight: "h-[350px] md:h-96", // Altura de Figma: 384px (h-96)
+    boxHeight: "h-[350px] lg:h-full", 
     reverse: false
   }
 ];
@@ -61,7 +62,8 @@ export function AtomicDesign() {
         {atomicBlocks.map((block) => (
           <div 
             key={block.id} 
-            className={`flex flex-col gap-12 lg:gap-20 items-center ${
+            // lg:items-stretch obliga a ambas columnas a medir lo mismo
+            className={`flex flex-col gap-12 lg:gap-20 lg:items-stretch items-center ${
               block.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'
             }`}
           >
@@ -90,7 +92,6 @@ export function AtomicDesign() {
 
             {/* Columna B: Componente UI Final EN SU CAJA EXHIBIDORA */}
             <div className="flex-1 w-full flex justify-center lg:justify-end items-center relative">
-              {/* Contenedor actualizado: bg-[#0D0D0D] y borde #27272A */}
               <div className={`w-full max-w-[568px] ${block.boxHeight} bg-[#0D0D0D] border border-[#27272A] rounded-2xl flex justify-center items-center p-8 relative overflow-hidden group`}>
                 <img 
                   src={block.uiImg} 

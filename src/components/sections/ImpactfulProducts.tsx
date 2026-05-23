@@ -10,33 +10,42 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
   const [activeProject, setActiveProject] = useState(0);
   const { t } = useLanguage();
 
+  // Helper experto: Si la traducción no existe y devuelve la misma key (ej: "agentic_cat"), forzamos el fallback
+  const safeT = (key: string, fallback: string) => {
+    const result = t('products', key);
+    if (!result || result.toLowerCase() === key.toLowerCase()) {
+      return fallback;
+    }
+    return result;
+  };
+
   const products = [
     {
       id: 1,
-      urlId: 'nuxio', // ID que usamos para abrir el case study
+      urlId: 'nuxio',
       title: "Nuxio Rescue",
-      category: t('products', 'nuxio_cat'),
-      description: t('products', 'nuxio_desc'),
-      image: "https://placehold.co/800x600/18181b/52525b?text=Nuxio+Rescue",
+      category: safeT('nuxio_cat', "INDUSTRIAL B2B"),
+      description: safeT('nuxio_desc', "A complete redesign focused on user experience and accessibility for an emergency rescue platform."),
+      image: "https://placehold.co/800x600/18181b/52525b?text=Nuxio+Rescue", // O la ruta a la imagen de Nuxio si ya la tenés
       tags: ["UX Research", "Design System", "React"]
     },
     {
       id: 2,
-      urlId: 'electro', // Para futuros case studies
-      title: "ElectroShop",
-      category: t('products', 'electro_cat'),
-      description: t('products', 'electro_desc'),
-      image: "https://placehold.co/800x600/18181b/52525b?text=ElectroShop",
-      tags: ["UI Design", "Frontend", "Firebase"]
+      urlId: 'agentic', 
+      title: "Agentic OS",
+      category: safeT('agentic_cat', "AI B2B SAAS"),
+      description: safeT('agentic_desc', "Designed a complete B2B SaaS platform for an AI from scratch, focusing on scalability, data density, and user experience."),
+      image: "/AgenticOsimg/hero-dashboard.png", 
+      tags: ["UX/UI Design", "Design System", "0 to 1"]
     },
     {
       id: 3,
-      urlId: 'agentic', // <-- Este ID es clave para tu router/función
-      title: "Agentic OS",
-      category: "AI B2B SAAS", // Podés cambiarlo a t('products', 'agentic_cat') luego
-      description: "The design of a complete B2B SaaS (CRM / ERP) from scratch for a real estate agency, acting as a Solo Product Designer.",
-      image: "/AgenticOsimg/hero-dashboard.png", // Levantamos la imagen real que exportaste
-      tags: ["UX/UI Design", "Design System", "0 to 1"]
+      urlId: 'laboratory',
+      title: "The Laboratory",
+      category: safeT('lab_cat', "REACT COMPONENTS"),
+      description: safeT('lab_desc', "A curated collection of our highlights: UI components designed with millimeter precision and translated into clean React code across various projects."),
+      image: "https://placehold.co/800x600/18181b/52525b?text=The+Laboratory", // Cambiar luego por una imagen real tuya
+      tags: ["UI Design", "Frontend", "React"] 
     }
   ];
 
@@ -44,6 +53,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
     <section id="impactful-products" className="w-full flex justify-center pt-10 pb-24 border-t border-white/5 scroll-mt-14">
       <div className="w-full max-w-[1533px] px-6 md:px-40 flex flex-col lg:flex-row gap-16 lg:gap-8">
         
+        {/* Columna Izquierda: Textos y Lista */}
         <div className="w-full lg:w-5/12 flex flex-col justify-between">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -52,13 +62,13 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
             className="flex flex-col gap-3"
           >
             <span className="text-zinc-500 text-[10px] font-mono uppercase tracking-[0.2em]">
-              {t('products', 'badge')}
+              {safeT('badge', 'LATEST WORK')}
             </span>
             <h2 className="text-gray-200 text-4xl md:text-5xl font-semibold font-sans leading-none">
-              {t('products', 'title')}
+              {safeT('title', 'Impactful Products')}
             </h2>
             <p className="text-zinc-400 text-sm mt-4 max-w-sm leading-relaxed">
-              {t('products', 'subtitle')}
+              {safeT('subtitle', 'Projects where design architecture and code quality intersect to solve real business problems.')}
             </p>
           </motion.div>
 
@@ -67,7 +77,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
               <div 
                 key={product.id}
                 onMouseEnter={() => setActiveProject(index)}
-                onClick={() => onOpenCaseStudy && product.urlId && onOpenCaseStudy(product.urlId)} // Permite clickear la lista entera también
+                onClick={() => onOpenCaseStudy && product.urlId && onOpenCaseStudy(product.urlId)}
                 className={`py-6 border-b border-white/5 cursor-pointer transition-all duration-300 flex items-center justify-between group ${
                   activeProject === index ? 'opacity-100 pl-4' : 'opacity-40 hover:opacity-70'
                 }`}
@@ -90,6 +100,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
           </div>
         </div>
 
+        {/* Columna Derecha: Imagen y Descripción */}
         <div className="w-full lg:w-7/12 lg:pl-12 flex items-center">
           <div className="w-full aspect-[4/3] relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group">
             <AnimatePresence mode="wait">
@@ -124,7 +135,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                     className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6"
                   >
                     <span className="text-white text-xs font-sans font-medium uppercase tracking-tight">
-                      {t('products', 'link') || "View Case Study"}
+                      {safeT('link', 'View Case Study')}
                     </span>
                     <span className="text-white text-xs transition-transform group-hover:translate-x-1">
                       →

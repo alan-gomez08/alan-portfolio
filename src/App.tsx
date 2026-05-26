@@ -7,14 +7,14 @@ import { TechStack } from './components/sections/TechStack';
 import { Methodology } from './components/sections/Methodology';
 import { Experience } from './components/sections/Experience';
 import { ImpactfulProducts } from './components/sections/ImpactfulProducts';
-import { TheLaboratory } from './components/sections/TheLaboratory';
 import { About } from './components/sections/About';
 import { Contact } from './components/sections/Contact';
 
 // Importamos el layout y tus casos de estudio
 import { CaseStudyLayout } from './components/layout/CaseStudyLayout';
 import { NuxioRescue } from './components/pages/NuxioRescue';
-import { AgenticOS } from './components/pages/AgenticOS'; // <-- 1. IMPORTAMOS AGENTIC OS
+import { AgenticOS } from './components/pages/AgenticOS'; 
+import { Laboratory } from './components/pages/Laboratory'; // <-- IMPORTAMOS EL NUEVO LAB
 
 function App() {
   // Estado para controlar qué caso de estudio está abierto
@@ -36,14 +36,18 @@ function App() {
       <div className="min-h-screen bg-zinc-950 text-gray-200 font-sans flex flex-col items-center overflow-x-hidden selection:bg-emerald-500/30 selection:text-emerald-400">
         
         <AnimatePresence mode="wait">
-          {/* 2. LÓGICA DE RUTAS ACTUALIZADA */}
+          {/* LÓGICA DE RUTAS ACTUALIZADA */}
           {activeCaseStudy === 'nuxio' ? (
             <CaseStudyLayout key="case-study-nuxio" onBack={handleCloseCaseStudy}>
               <NuxioRescue />
             </CaseStudyLayout>
-          ) : activeCaseStudy === 'agentic' ? ( // <-- 3. AGREGAMOS LA RUTA PARA AGENTIC
+          ) : activeCaseStudy === 'agentic' ? ( 
             <CaseStudyLayout key="case-study-agentic" onBack={handleCloseCaseStudy}>
               <AgenticOS />
+            </CaseStudyLayout>
+          ) : activeCaseStudy === 'laboratory' ? ( // <-- AGREGAMOS LA RUTA PARA EL LAB
+            <CaseStudyLayout key="case-study-laboratory" onBack={handleCloseCaseStudy}>
+              <Laboratory />
             </CaseStudyLayout>
           ) : (
             <motion.div 
@@ -57,9 +61,8 @@ function App() {
               <main className="w-full max-w-[1533px] flex flex-col relative pt-14"> 
                 <Hero />
                 <TechStack />
-                {/* Le pasamos la función al componente para que la gatille */}
                 <ImpactfulProducts onOpenCaseStudy={handleOpenCaseStudy} />
-                <TheLaboratory />
+                {/* Eliminamos <TheLaboratory /> de acá para que no estorbe en el home */}
                 <Methodology />
                 <Experience />
                 <About />

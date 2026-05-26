@@ -10,7 +10,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
   const [activeProject, setActiveProject] = useState(0);
   const { t } = useLanguage();
 
-  // Helper experto: Si la traducción no existe y devuelve la misma key (ej: "agentic_cat"), forzamos el fallback
+  // Helper experto para evitar colapsos por traducciones inexistentes
   const safeT = (key: string, fallback: string) => {
     const result = t('products', key);
     if (!result || result.toLowerCase() === key.toLowerCase()) {
@@ -26,7 +26,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
       title: "Nuxio Rescue",
       category: safeT('nuxio_cat', "INDUSTRIAL B2B"),
       description: safeT('nuxio_desc', "A complete redesign focused on user experience and accessibility for an emergency rescue platform."),
-      image: "https://placehold.co/800x600/18181b/52525b?text=Nuxio+Rescue", // O la ruta a la imagen de Nuxio si ya la tenés
+      image: "https://placehold.co/800x600/18181b/52525b?text=Nuxio+Rescue",
       tags: ["UX Research", "Design System", "React"]
     },
     {
@@ -40,11 +40,11 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
     },
     {
       id: 3,
-      urlId: 'laboratory',
+      urlId: 'laboratory', // <-- Este ID conecta con la ruta de App.tsx
       title: "The Laboratory",
       category: safeT('lab_cat', "REACT COMPONENTS"),
       description: safeT('lab_desc', "A curated collection of our highlights: UI components designed with millimeter precision and translated into clean React code across various projects."),
-      image: "https://placehold.co/800x600/18181b/52525b?text=The+Laboratory", // Cambiar luego por una imagen real tuya
+      image: "https://placehold.co/800x600/18181b/52525b?text=The+Laboratory",
       tags: ["UI Design", "Frontend", "React"] 
     }
   ];
@@ -53,7 +53,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
     <section id="impactful-products" className="w-full flex justify-center pt-10 pb-24 border-t border-white/5 scroll-mt-14">
       <div className="w-full max-w-[1533px] px-6 md:px-40 flex flex-col lg:flex-row gap-16 lg:gap-8">
         
-        {/* Columna Izquierda: Textos y Lista */}
+        {/* Columna Izquierda */}
         <div className="w-full lg:w-5/12 flex flex-col justify-between">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -100,7 +100,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
           </div>
         </div>
 
-        {/* Columna Derecha: Imagen y Descripción */}
+        {/* Columna Derecha */}
         <div className="w-full lg:w-7/12 lg:pl-12 flex items-center">
           <div className="w-full aspect-[4/3] relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group">
             <AnimatePresence mode="wait">
@@ -130,12 +130,15 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                     {products[activeProject].description}
                   </p>
 
+                  {/* CAMBIO DE TEXTO DINÁMICO AQUÍ */}
                   <button 
                     onClick={() => onOpenCaseStudy && products[activeProject].urlId && onOpenCaseStudy(products[activeProject].urlId)}
                     className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6"
                   >
                     <span className="text-white text-xs font-sans font-medium uppercase tracking-tight">
-                      {safeT('link', 'View Case Study')}
+                      {products[activeProject].urlId === 'laboratory' 
+                        ? safeT('lab_link_text', 'View Library') 
+                        : safeT('link', 'View Case Study')}
                     </span>
                     <span className="text-white text-xs transition-transform group-hover:translate-x-1">
                       →

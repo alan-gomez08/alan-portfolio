@@ -14,7 +14,7 @@ import { Contact } from './components/sections/Contact';
 import { CaseStudyLayout } from './components/layout/CaseStudyLayout';
 import { NuxioRescue } from './components/pages/NuxioRescue';
 import { AgenticOS } from './components/pages/AgenticOS'; 
-import { Laboratory } from './components/pages/Laboratory'; // <-- IMPORTAMOS EL NUEVO LAB
+import { Laboratory } from './components/pages/Laboratory';
 
 function App() {
   // Estado para controlar qué caso de estudio está abierto
@@ -36,17 +36,17 @@ function App() {
       <div className="min-h-screen bg-zinc-950 text-gray-200 font-sans flex flex-col items-center overflow-x-hidden selection:bg-emerald-500/30 selection:text-emerald-400">
         
         <AnimatePresence mode="wait">
-          {/* LÓGICA DE RUTAS ACTUALIZADA */}
+          {/* LÓGICA DE RUTAS ACTUALIZADA CON TEMAS */}
           {activeCaseStudy === 'nuxio' ? (
-            <CaseStudyLayout key="case-study-nuxio" onBack={handleCloseCaseStudy}>
+            <CaseStudyLayout key="case-study-nuxio" onBack={handleCloseCaseStudy} theme="light">
               <NuxioRescue />
             </CaseStudyLayout>
           ) : activeCaseStudy === 'agentic' ? ( 
-            <CaseStudyLayout key="case-study-agentic" onBack={handleCloseCaseStudy}>
+            <CaseStudyLayout key="case-study-agentic" onBack={handleCloseCaseStudy} theme="dark">
               <AgenticOS />
             </CaseStudyLayout>
-          ) : activeCaseStudy === 'laboratory' ? ( // <-- AGREGAMOS LA RUTA PARA EL LAB
-            <CaseStudyLayout key="case-study-laboratory" onBack={handleCloseCaseStudy}>
+          ) : activeCaseStudy === 'laboratory' ? (
+            <CaseStudyLayout key="case-study-laboratory" onBack={handleCloseCaseStudy} theme="dark">
               <Laboratory />
             </CaseStudyLayout>
           ) : (
@@ -62,7 +62,6 @@ function App() {
                 <Hero />
                 <TechStack />
                 <ImpactfulProducts onOpenCaseStudy={handleOpenCaseStudy} />
-                {/* Eliminamos <TheLaboratory /> de acá para que no estorbe en el home */}
                 <Methodology />
                 <Experience />
                 <About />

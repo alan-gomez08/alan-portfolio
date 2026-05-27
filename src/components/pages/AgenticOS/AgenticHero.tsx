@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export function AgenticHero() {
+  const { t } = useLanguage();
+
   return (
     <motion.section 
       initial={{ opacity: 0, y: 20 }}
@@ -8,31 +11,23 @@ export function AgenticHero() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="w-full flex justify-center mt-12 md:mt-24 mb-16 md:mb-24 antialiased"
     >
-      {/* Contenedor principal limpio, sin bordes ni fondos */}
       <div className="w-full max-w-[1233px] flex flex-col items-center pt-8 md:pt-16">
         
-        {/* =========================================
-            1. TEXTOS Y TÍTULOS (Centrados)
-            ========================================= */}
+        {/* TEXTOS Y TÍTULOS */}
         <div className="flex flex-col items-center text-center gap-6 md:gap-10 max-w-[1017px] w-full relative z-10 px-6">
           
-          {/* Título Principal */}
           <h1 className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 text-[40px] md:text-[56px] lg:text-[72px] font-bold leading-[1.1] lg:leading-[106px] tracking-tight m-0">
-            Agentic OS: <br className="hidden sm:block" />
-            <span className="text-[#A1A1AA] font-normal">From 0 to 1 in the AI ecosystem</span>
+            {t('agentic', 'hero_title')} <br className="hidden sm:block" />
+            <span className="text-[#A1A1AA] font-normal">{t('agentic', 'hero_subtitle')}</span>
           </h1>
           
-          {/* Descripción */}
           <p className="text-[#A1A1AA] text-[16px] md:text-[20px] lg:text-[24px] font-normal leading-[1.6] lg:leading-[28px] max-w-[900px] m-0">
-            Design of a scalable MVP and UI Kit for a B2D (Business to Developer) platform aimed at managing Artificial Intelligence Agents.
+            {t('agentic', 'hero_desc')}
           </p>
 
-          {/* =========================================
-              BADGES / TAGS DE METADATOS
-              ========================================= */}
+          {/* BADGES / TAGS */}
           <div className="flex flex-wrap justify-center items-center gap-y-4 gap-x-4 md:gap-x-9 mt-4">
             
-            {/* Tag 1: Role */}
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 flex items-center justify-center">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,13 +35,11 @@ export function AgenticHero() {
                   <path d="M8.00016 7.33333C9.47292 7.33333 10.6668 6.13943 10.6668 4.66667C10.6668 3.19391 9.47292 2 8.00016 2C6.5274 2 5.3335 3.19391 5.3335 4.66667C5.3335 6.13943 6.5274 7.33333 8.00016 7.33333Z" stroke="#737373" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-[#D4D4D8] text-[13px] md:text-[14px] font-medium leading-5">Lead Product Designer</span>
+              <span className="text-[#D4D4D8] text-[13px] md:text-[14px] font-medium leading-5">{t('agentic', 'tag_role')}</span>
             </div>
 
-            {/* Separador */}
             <div className="hidden sm:block w-[1px] h-4 bg-[#262626]"></div>
 
-            {/* Tag 2: Duration */}
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 flex items-center justify-center">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,13 +49,11 @@ export function AgenticHero() {
                   <path d="M2 6.66669H14" stroke="#737373" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-[#D4D4D8] text-[13px] md:text-[14px] font-medium leading-5">8 weeks</span>
+              <span className="text-[#D4D4D8] text-[13px] md:text-[14px] font-medium leading-5">{t('agentic', 'tag_duration')}</span>
             </div>
 
-            {/* Separador */}
             <div className="hidden md:block w-[1px] h-4 bg-[#262626]"></div>
 
-            {/* Tag 3: Type */}
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 flex items-center justify-center">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,13 +62,11 @@ export function AgenticHero() {
                   <path d="M1.3335 11.3333C1.33318 11.4608 1.36944 11.5858 1.43798 11.6933C1.50651 11.8008 1.60444 11.8864 1.72016 11.94L7.4535 14.5466C7.6263 14.6249 7.81381 14.6654 8.0035 14.6654C8.19319 14.6654 8.3807 14.6249 8.5535 14.5466L14.2735 11.9466C14.3915 11.8936 14.4915 11.8074 14.5614 11.6985C14.6312 11.5896 14.6679 11.4627 14.6668 11.3333" stroke="#737373" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-[#D4D4D8] text-[13px] md:text-[14px] font-medium leading-5">Project 0 to 1</span>
+              <span className="text-[#D4D4D8] text-[13px] md:text-[14px] font-medium leading-5">{t('agentic', 'tag_type')}</span>
             </div>
 
-            {/* Separador */}
             <div className="hidden sm:block w-[1px] h-4 bg-[#262626]"></div>
 
-            {/* Tag 4: Platform */}
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 flex items-center justify-center">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,30 +75,21 @@ export function AgenticHero() {
                   <path d="M7.99984 9.33335C8.73622 9.33335 9.33317 8.7364 9.33317 8.00002C9.33317 7.26364 8.73622 6.66669 7.99984 6.66669C7.26346 6.66669 6.6665 7.26364 6.6665 8.00002C6.6665 8.7364 7.26346 9.33335 7.99984 9.33335Z" stroke="#737373" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-[#D4D4D8] text-[13px] md:text-[14px] font-medium leading-5">Web App / SaaS B2B</span>
+              <span className="text-[#D4D4D8] text-[13px] md:text-[14px] font-medium leading-5">{t('agentic', 'tag_platform')}</span>
             </div>
 
           </div>
 
         </div>
 
-        {/* =========================================
-            2. MOCKUP DASHBOARD
-            Ahora sin traslaciones extrañas, simplemente flotando
-            suavemente sobre el fondo de la página.
-            ========================================= */}
+        {/* MOCKUP DASHBOARD */}
         <div className="relative w-full flex justify-center mt-12 md:mt-20 px-4 md:px-12 pb-0">
-          
-          {/* EL GLOW CYAN DE FONDO */}
           <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[70%] h-[70%] bg-[#06B6D4] opacity-20 blur-[80px] md:blur-[120px] rounded-[100%] pointer-events-none mix-blend-screen" />
-          
-          {/* MOCKUP DASHBOARD */}
           <img 
             src="/AgenticOsimg/Dashboard-Hero.svg" 
             alt="Agentic OS Dashboard Interface"
             className="relative z-10 w-full max-w-[1050px] h-auto object-contain drop-shadow-[0_0_40px_rgba(6,182,212,0.15)]"
           />
-          
         </div>
 
       </div>

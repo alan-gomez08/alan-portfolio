@@ -10,7 +10,6 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
   const [activeProject, setActiveProject] = useState(0);
   const { t } = useLanguage();
 
-  // Helper experto para evitar colapsos por traducciones inexistentes
   const safeT = (key: string, fallback: string) => {
     const result = t('products', key);
     if (!result || result.toLowerCase() === key.toLowerCase()) {
@@ -40,7 +39,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
     },
     {
       id: 3,
-      urlId: 'laboratory', // <-- Este ID conecta con la ruta de App.tsx
+      urlId: 'laboratory',
       title: "The Laboratory",
       category: safeT('lab_cat', "REACT COMPONENTS"),
       description: safeT('lab_desc', "A curated collection of our highlights: UI components designed with millimeter precision and translated into clean React code across various projects."),
@@ -130,7 +129,6 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                     {products[activeProject].description}
                   </p>
 
-                  {/* CAMBIO DE TEXTO DINÁMICO AQUÍ */}
                   <button 
                     onClick={() => onOpenCaseStudy && products[activeProject].urlId && onOpenCaseStudy(products[activeProject].urlId)}
                     className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6"

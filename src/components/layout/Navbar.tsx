@@ -26,6 +26,7 @@ export function Navbar({ isCaseStudy = false, onBack, theme = 'dark' }: NavbarPr
     { key: 'products', href: '#impactful-products' },
     { key: 'methodology', href: '#methodology' },
     { key: 'experience', href: '#experience' },
+    { key: 'education', href: '#education' }, // <-- LÍNEA NUEVA
     { key: 'about', href: '#about' }
   ];
 

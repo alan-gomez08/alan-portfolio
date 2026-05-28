@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export function InfoBanner() {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -19,8 +22,8 @@ export function InfoBanner() {
               <div className="w-[5px] h-[3.33px] left-[13.33px] top-[7.50px] absolute outline outline-[1.25px] outline-offset-[-0.63px] outline-cyan-400" />
             </div>
           </div>
-          <span className="text-gray-400 text-base font-medium tracking-wide">ROLE</span>
-          <span className="text-white text-base font-normal text-center">UX/UI Lead</span>
+          <span className="text-gray-400 text-base font-medium tracking-wide uppercase">{t('nuxio', 'banner_role_label')}</span>
+          <span className="text-white text-base font-normal text-center">{t('nuxio', 'banner_role_val')}</span>
         </div>
 
         <div className="flex-1 flex flex-col justify-center items-center gap-4 p-8 lg:py-11">
@@ -32,8 +35,8 @@ export function InfoBanner() {
               <div className="w-1.5 h-1 left-[2.50px] top-[13.33px] absolute outline outline-[1.25px] outline-offset-[-0.63px] outline-cyan-400" />
             </div>
           </div>
-          <span className="text-gray-400 text-base font-medium tracking-wide">PLATFORM</span>
-          <span className="text-white text-base font-normal text-center">Web App / SaaS B2B</span>
+          <span className="text-gray-400 text-base font-medium tracking-wide uppercase">{t('nuxio', 'banner_platform_label')}</span>
+          <span className="text-white text-base font-normal text-center">{t('nuxio', 'banner_platform_val')}</span>
         </div>
 
         <div className="flex-1 flex flex-col justify-center items-center gap-4 p-8 lg:py-11">
@@ -44,8 +47,8 @@ export function InfoBanner() {
               <div className="w-1 h-3.5 left-[7.92px] top-[3.33px] absolute outline outline-[1.25px] outline-offset-[-0.63px] outline-cyan-400" />
             </div>
           </div>
-          <span className="text-gray-400 text-base font-medium tracking-wide uppercase">STACK & TOOLS</span>
-          <span className="text-white text-base font-normal text-center">Figma / React</span>
+          <span className="text-gray-400 text-base font-medium tracking-wide uppercase">{t('nuxio', 'banner_stack_label')}</span>
+          <span className="text-white text-base font-normal text-center">{t('nuxio', 'banner_stack_val')}</span>
         </div>
 
         <div className="flex-1 flex flex-col justify-center items-center gap-4 p-8 lg:py-11">
@@ -54,8 +57,8 @@ export function InfoBanner() {
               <div className="size-4 left-[2.50px] top-[1.66px] absolute outline outline-[1.25px] outline-offset-[-0.63px] outline-cyan-400" />
             </div>
           </div>
-          <span className="text-gray-400 text-base font-medium tracking-wide text-center">CRITICAL TIMELINE</span>
-          <span className="text-white text-base font-normal text-center">14 Days (Rescue)</span>
+          <span className="text-gray-400 text-base font-medium tracking-wide text-center uppercase">{t('nuxio', 'banner_time_label')}</span>
+          <span className="text-white text-base font-normal text-center">{t('nuxio', 'banner_time_val')}</span>
         </div>
 
       </div>

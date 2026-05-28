@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, Reorder } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
 
 // --- WRAPPER BENTO CARD PREMIUM ---
 function LabCard({ title, tag, children, colSpan = 1 }: { title: string; tag: string; children: React.ReactNode; colSpan?: number }) {
@@ -32,8 +33,8 @@ function LabCard({ title, tag, children, colSpan = 1 }: { title: string; tag: st
 // --- 1. COMMAND PALETTE (Atajo Global + Click Outside) ---
 function CmdKPalette() {
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
 
-  // Capturar atajo de teclado Cmd+K o Ctrl+K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
@@ -49,14 +50,13 @@ function CmdKPalette() {
   return (
     <div className="w-full flex flex-col items-center justify-center relative">
       <button onClick={() => setOpen(true)} className="w-full max-w-[260px] px-4 py-2.5 bg-zinc-900 border border-white/10 text-zinc-400 rounded-xl flex items-center justify-between hover:bg-zinc-800 transition-colors shadow-lg group">
-        <span className="text-sm group-hover:text-zinc-200 transition-colors">Search issues...</span> 
+        <span className="text-sm group-hover:text-zinc-200 transition-colors">{t('laboratory', 'cmdk_search')}</span> 
         <kbd className="bg-black border border-white/10 px-2 py-0.5 rounded text-[10px] font-mono font-bold text-zinc-500">⌘ K</kbd>
       </button>
 
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop para cerrar haciendo click afuera */}
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
@@ -68,16 +68,16 @@ function CmdKPalette() {
             >
               <div className="flex items-center px-3 border-b border-zinc-800">
                 <svg className="w-4 h-4 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                <input autoFocus placeholder="Type a command..." className="bg-transparent p-3 text-xs text-white outline-none w-full placeholder:text-zinc-600" />
-                <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-white text-[10px] font-mono bg-zinc-800 px-1.5 py-0.5 rounded">ESC</button>
+                <input autoFocus placeholder={t('laboratory', 'cmdk_placeholder')} className="bg-transparent p-3 text-xs text-white outline-none w-full placeholder:text-zinc-600" />
+                <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-white text-[10px] font-mono bg-zinc-800 px-1.5 py-0.5 rounded">{t('laboratory', 'cmdk_esc')}</button>
               </div>
               <div className="flex flex-col p-1.5 gap-0.5 bg-black/20">
-                <span className="text-[9px] text-zinc-600 font-mono px-2 py-1 uppercase tracking-widest">Suggestions</span>
+                <span className="text-[9px] text-zinc-600 font-mono px-2 py-1 uppercase tracking-widest">{t('laboratory', 'cmdk_suggestions')}</span>
                 <div className="p-2 text-xs text-zinc-300 hover:bg-cyan-500/10 hover:text-cyan-400 rounded-md cursor-pointer transition-colors flex justify-between items-center">
-                  Assign to me <kbd className="text-[9px] text-zinc-600 font-mono">I</kbd>
+                  {t('laboratory', 'cmdk_assign')} <kbd className="text-[9px] text-zinc-600 font-mono">I</kbd>
                 </div>
                 <div className="p-2 text-xs text-zinc-300 hover:bg-cyan-500/10 hover:text-cyan-400 rounded-md cursor-pointer transition-colors flex justify-between items-center">
-                  Change Status <kbd className="text-[9px] text-zinc-600 font-mono">S</kbd>
+                  {t('laboratory', 'cmdk_status')} <kbd className="text-[9px] text-zinc-600 font-mono">S</kbd>
                 </div>
               </div>
             </motion.div>
@@ -88,20 +88,20 @@ function CmdKPalette() {
   );
 }
 
-// --- 2. LINEAR-STYLE STATUS PICKER (Click Outside Fix) ---
+// --- 2. LINEAR-STYLE STATUS PICKER ---
 function StatusPicker() {
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState("In Progress");
+  const [statusKey, setStatusKey] = useState("status_in_progress");
   const menuRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   const statuses = [
-    { name: "Backlog", color: "bg-zinc-500" },
-    { name: "Todo", color: "bg-zinc-300" },
-    { name: "In Progress", color: "bg-amber-400" },
-    { name: "Done", color: "bg-emerald-500" }
+    { key: "status_backlog", color: "bg-zinc-500" },
+    { key: "status_todo", color: "bg-zinc-300" },
+    { key: "status_in_progress", color: "bg-amber-400" },
+    { key: "status_done", color: "bg-emerald-500" }
   ];
 
-  // Cerrar al clickear afuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) setOpen(false);
@@ -116,8 +116,8 @@ function StatusPicker() {
         onClick={() => setOpen(!open)}
         className="px-3 py-1.5 bg-zinc-900 border border-white/10 rounded-lg text-xs font-medium text-white flex items-center gap-2 hover:bg-zinc-800 transition-colors shadow-sm"
       >
-        <div className={`w-2 h-2 rounded-full ${statuses.find(s => s.name === status)?.color}`} />
-        {status}
+        <div className={`w-2 h-2 rounded-full ${statuses.find(s => s.key === statusKey)?.color}`} />
+        {t('laboratory', statusKey)}
       </button>
 
       <AnimatePresence>
@@ -128,13 +128,13 @@ function StatusPicker() {
           >
             {statuses.map(s => (
               <div 
-                key={s.name} 
-                onClick={() => { setStatus(s.name); setOpen(false); }}
+                key={s.key} 
+                onClick={() => { setStatusKey(s.key); setOpen(false); }}
                 className="flex items-center gap-2 px-2 py-1.5 text-xs text-zinc-300 hover:bg-white/5 hover:text-white rounded-md cursor-pointer transition-colors"
               >
                 <div className={`w-2 h-2 rounded-full ${s.color}`} />
-                {s.name}
-                {status === s.name && <svg className="w-3 h-3 ml-auto text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>}
+                {t('laboratory', s.key)}
+                {statusKey === s.key && <svg className="w-3 h-3 ml-auto text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>}
               </div>
             ))}
           </motion.div>
@@ -150,6 +150,7 @@ function PerspectiveCard() {
   const y = useMotionValue(0);
   const rotateX = useTransform(y, [-100, 100], [20, -20]);
   const rotateY = useTransform(x, [-100, 100], [-20, 20]);
+  const { t } = useLanguage();
 
   return (
     <div className="w-full h-full flex items-center justify-center relative" style={{ perspective: 800 }} 
@@ -167,7 +168,7 @@ function PerspectiveCard() {
         <div className="w-10 h-10 bg-cyan-400/10 rounded-full flex items-center justify-center">
            <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2 1m-2-1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
         </div>
-        <span className="text-[10px] text-zinc-500 font-mono tracking-widest">TILT ME</span>
+        <span className="text-[10px] text-zinc-500 font-mono tracking-widest">{t('laboratory', 'perspective_tilt')}</span>
       </motion.div>
     </div>
   );
@@ -175,24 +176,27 @@ function PerspectiveCard() {
 
 // --- 4. DRAG & DROP KANBAN LIST ---
 function DragDropList() {
-  const [items, setItems] = useState(['UX Research', 'API Integration', 'UI Polish']);
+  const { t } = useLanguage();
+  // Usamos keys internas para que Framer no rompa la lista si el usuario cambia el idioma mientras arrastra.
+  const [items, setItems] = useState(['kanban_item1', 'kanban_item2', 'kanban_item3']);
   return (
     <div className="w-full flex flex-col items-center justify-center">
       <Reorder.Group axis="y" values={items} onReorder={setItems} className="w-full max-w-[220px] flex flex-col gap-2">
         {items.map(item => (
           <Reorder.Item key={item} value={item} className="bg-zinc-900 px-3 py-2.5 rounded-lg cursor-grab active:cursor-grabbing text-xs font-medium text-zinc-300 border border-white/5 flex items-center justify-between shadow-sm hover:border-cyan-500/30 transition-colors">
-            {item} 
+            {t('laboratory', item)} 
             <svg className="w-4 h-4 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </Reorder.Item>
         ))}
       </Reorder.Group>
-      <span className="text-[9px] text-zinc-600 mt-4 font-mono uppercase tracking-widest">Drag to reorder</span>
+      <span className="text-[9px] text-zinc-600 mt-4 font-mono uppercase tracking-widest">{t('laboratory', 'kanban_drag')}</span>
     </div>
   );
 }
 
 // --- 5. MULTI-TAG INPUT ---
 function MultiTagInput() {
+  const { t } = useLanguage();
   const [tags, setTags] = useState(['React', 'TypeScript']);
   const [input, setInput] = useState('');
 
@@ -222,17 +226,18 @@ function MultiTagInput() {
         </AnimatePresence>
         <input
           value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown}
-          placeholder={tags.length === 0 ? "Type and press enter..." : ""}
+          placeholder={tags.length === 0 ? t('laboratory', 'tags_placeholder') : ""}
           className="bg-transparent outline-none text-xs text-white flex-1 min-w-[60px]"
         />
       </div>
-      <span className="text-[9px] text-zinc-600 font-mono pl-1 uppercase tracking-widest">Press Enter to add</span>
+      <span className="text-[9px] text-zinc-600 font-mono pl-1 uppercase tracking-widest">{t('laboratory', 'tags_hint')}</span>
     </div>
   );
 }
 
-// --- 6. AUTO-FOCUS OTP (Con Backspace Handler) ---
+// --- 6. AUTO-FOCUS OTP ---
 function PremiumOTP() {
+  const { t } = useLanguage();
   const [otp, setOtp] = useState(['', '', '', '']);
   const [error, setError] = useState(false);
   const inputs = useRef<HTMLInputElement[]>([]);
@@ -240,11 +245,9 @@ function PremiumOTP() {
   const handleChange = (index: number, value: string) => {
     if (!/^[0-9]?$/.test(value)) return;
     const newOtp = [...otp]; newOtp[index] = value; setOtp(newOtp);
-    // Auto-focus next
     if (value && index < 3) inputs.current[index + 1]?.focus();
   };
 
-  // Logica de Backspace arreglada
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace' && !otp[index] && index > 0) {
       inputs.current[index - 1]?.focus();
@@ -263,13 +266,14 @@ function PremiumOTP() {
           />
         ))}
       </motion.div>
-      <button onClick={() => { setError(true); setTimeout(() => setError(false), 500); }} className="text-[9px] text-rose-400 hover:text-rose-300 transition-colors uppercase tracking-[0.2em] font-bold">Trigger Error</button>
+      <button onClick={() => { setError(true); setTimeout(() => setError(false), 500); }} className="text-[9px] text-rose-400 hover:text-rose-300 transition-colors uppercase tracking-[0.2em] font-bold">{t('laboratory', 'otp_trigger')}</button>
     </div>
   );
 }
 
 // --- 7. SKELETON MORPHING ---
 function SkeletonMorph() {
+  const { t } = useLanguage();
   const [loaded, setLoaded] = useState(false);
   return (
     <div className="w-full flex flex-col gap-4 items-center cursor-pointer" onClick={() => setLoaded(!loaded)}>
@@ -282,13 +286,14 @@ function SkeletonMorph() {
             <motion.div layout className={`h-2 rounded-md ${loaded ? 'w-1/2 bg-zinc-400' : 'w-2/3 bg-zinc-800 animate-pulse'}`} />
         </div>
       </div>
-      <span className="text-[9px] text-zinc-600 font-mono uppercase tracking-widest">Tap to toggle</span>
+      <span className="text-[9px] text-zinc-600 font-mono uppercase tracking-widest">{t('laboratory', 'skeleton_tap')}</span>
     </div>
   );
 }
 
 // --- 8. EXPANDABLE SEARCH SHIFT ---
 function PremiumSearch() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   return (
     <div className="w-full flex justify-center items-center h-12">
@@ -299,7 +304,7 @@ function PremiumSearch() {
       >
         <svg className="w-4 h-4 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         <input
-          type="text" placeholder="Search..." onBlur={() => setOpen(false)}
+          type="text" placeholder={t('laboratory', 'search_placeholder')} onBlur={() => setOpen(false)}
           className="bg-transparent outline-none text-white text-xs ml-3 w-full placeholder:text-zinc-600"
           style={{ display: open ? 'block' : 'none' }} autoFocus={open}
         />
@@ -324,49 +329,49 @@ function AnimatedTabs() {
   );
 }
 
-// --- 10. HOLD TO CONFIRM (Auto-Reset Fix) ---
+// --- 10. HOLD TO CONFIRM ---
 function HoldToConfirm() {
+  const { t } = useLanguage();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   
   useEffect(() => { 
     if (isDeleting && !isDeleted) { 
-      const t = setTimeout(() => setIsDeleted(true), 1500); 
-      return () => clearTimeout(t); 
+      const tmr = setTimeout(() => setIsDeleted(true), 1500); 
+      return () => clearTimeout(tmr); 
     } 
   }, [isDeleting, isDeleted]);
 
-  // Auto-reset para que el usuario pueda jugar varias veces
   useEffect(() => {
     if (isDeleted) {
-      const t = setTimeout(() => { setIsDeleted(false); setIsDeleting(false); }, 3000);
-      return () => clearTimeout(t);
+      const tmr = setTimeout(() => { setIsDeleted(false); setIsDeleting(false); }, 3000);
+      return () => clearTimeout(tmr);
     }
   }, [isDeleted]);
 
   return (
     <motion.button onPointerDown={() => setIsDeleting(true)} onPointerUp={() => setIsDeleting(false)} onPointerLeave={() => setIsDeleting(false)} animate={isDeleted ? { scale: 0.9, opacity: 0.5 } : { scale: 1 }} className="relative px-6 py-3 bg-zinc-900 border border-rose-500/30 text-rose-400 text-xs font-bold uppercase tracking-widest rounded-xl overflow-hidden select-none" >
-      <span className="relative z-10">{isDeleted ? 'Deleted' : 'Hold Delete'}</span>
+      <span className="relative z-10">{isDeleted ? t('laboratory', 'hold_deleted') : t('laboratory', 'hold_delete')}</span>
       <motion.div className="absolute left-0 top-0 bottom-0 bg-rose-500/20" initial={{ width: "0%" }} animate={{ width: isDeleting ? "100%" : "0%" }} transition={{ duration: isDeleting ? 1.5 : 0.2 }} />
     </motion.button>
   );
 }
 
-// --- 11. SWIPE TO UNLOCK (Auto-Reset Fix) ---
+// --- 11. SWIPE TO UNLOCK ---
 function SwipeToUnlock() {
+  const { t } = useLanguage();
   const [unlocked, setUnlocked] = useState(false);
   
-  // Auto-reset
   useEffect(() => {
     if (unlocked) {
-      const t = setTimeout(() => setUnlocked(false), 2500);
-      return () => clearTimeout(t);
+      const tmr = setTimeout(() => setUnlocked(false), 2500);
+      return () => clearTimeout(tmr);
     }
   }, [unlocked]);
 
   return (
     <div className="w-full max-w-[200px] h-12 bg-black rounded-full border border-white/10 relative flex items-center px-1.5 overflow-hidden">
-      {!unlocked && <span className="absolute w-full text-center text-zinc-600 text-[9px] font-mono uppercase tracking-widest pointer-events-none">Swipe Lock</span>}
+      {!unlocked && <span className="absolute w-full text-center text-zinc-600 text-[9px] font-mono uppercase tracking-widest pointer-events-none">{t('laboratory', 'swipe_lock')}</span>}
       <motion.div drag="x" dragConstraints={{ left: 0, right: 140 }} dragSnapToOrigin={!unlocked} onDragEnd={(_, info) => { if (info.offset.x > 100) setUnlocked(true); }} className="w-9 h-9 bg-white rounded-full flex items-center justify-center cursor-grab active:cursor-grabbing z-10 shadow-md text-black font-bold">{unlocked ? '🔓' : '→'}</motion.div>
       <motion.div className="absolute left-0 h-full bg-cyan-500/20 rounded-full" animate={{ width: unlocked ? '100%' : 0 }} />
     </div>
@@ -375,12 +380,13 @@ function SwipeToUnlock() {
 
 // --- 12. PASSWORD METER ---
 function PasswordMeter() {
+  const { t } = useLanguage();
   const [pwd, setPwd] = useState("secret");
   const strength = Math.min(pwd.length, 4);
   const colors = ['bg-zinc-800', 'bg-rose-500', 'bg-amber-400', 'bg-cyan-400', 'bg-emerald-400'];
   return (
     <div className="flex flex-col gap-3 w-full max-w-[180px]">
-      <input type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} placeholder="Enter password" className="bg-black border border-zinc-800 text-white text-xs font-mono rounded-lg px-3 py-2 outline-none focus:border-cyan-400 transition-colors"/>
+      <input type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} placeholder={t('laboratory', 'pwd_placeholder')} className="bg-black border border-zinc-800 text-white text-xs font-mono rounded-lg px-3 py-2 outline-none focus:border-cyan-400 transition-colors"/>
       <div className="flex gap-1 h-1.5 w-full">{[1, 2, 3, 4].map(l => <div key={l} className={`flex-1 rounded-full transition-colors duration-300 ${strength >= l ? colors[strength] : colors[0]}`}/>)}</div>
     </div>
   );
@@ -422,12 +428,13 @@ function VolumeSlider() {
 
 // --- 16. LOADING BUTTON ---
 function LoadingSubmit() {
+  const { t } = useLanguage();
   const [state, setState] = useState<'idle'|'loading'|'success'>('idle');
   const handleClick = () => { if (state !== 'idle') return; setState('loading'); setTimeout(() => setState('success'), 2000); setTimeout(() => setState('idle'), 4000); };
   return (
     <motion.button onClick={handleClick} animate={{ width: state === 'idle' ? 140 : 44 }} className="h-11 bg-white rounded-full text-black font-semibold flex items-center justify-center overflow-hidden text-sm px-4">
       <AnimatePresence mode="wait">
-        {state === 'idle' && <motion.span key="i">Deploy</motion.span>}
+        {state === 'idle' && <motion.span key="i">{t('laboratory', 'deploy_btn')}</motion.span>}
         {state === 'loading' && <motion.div key="l" className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin" />}
         {state === 'success' && <motion.svg key="s" className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"><path d="M5 13l4 4L19 7"/></motion.svg>}
       </AnimatePresence>
@@ -439,50 +446,49 @@ function LoadingSubmit() {
 // --- MAIN PAGE ---
 // ============================================
 export function Laboratory() {
+  const { t } = useLanguage();
   return (
     <section className="w-full flex flex-col items-center bg-[#0A0A0A] py-24 px-4 md:px-8 font-['Geist',_sans-serif]">
       
       <div className="w-full max-w-[1200px] mb-16 flex flex-col items-start gap-3">
         <span className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase border border-white/10 px-3 py-1.5 rounded-full bg-white/5">
-          Engineering Playground
+          {t('laboratory', 'badge')}
         </span>
         <h2 className="text-white text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight m-0">
-          The Desktop Lab.
+          {t('laboratory', 'title')}
         </h2>
         <p className="text-zinc-400 text-lg md:text-xl max-w-2xl leading-relaxed m-0 mt-2">
-          An exhibition of 16 high-fidelity React interactions focused on B2B SaaS desktop environments. Try the Cmd+K palette, tag input, and perspective card.
+          {t('laboratory', 'desc')}
         </p>
       </div>
 
-      {/* THE BENTO GRID - PERFECT TETRIS 16 COMPONENTS */}
-      {/* 4 Rows, 4 Columns per row on Desktop (xl). Alturas consistentes vía auto-rows-fr */}
       <div className="w-full max-w-[1200px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
         
         {/* Row 1 */}
-        <LabCard title="Command Palette" tag="UX Pattern" colSpan={2}><CmdKPalette /></LabCard>
-        <LabCard title="Status Picker" tag="Desktop UI"><StatusPicker /></LabCard>
-        <LabCard title="3D Perspective" tag="Mouse Physics"><PerspectiveCard /></LabCard>
+        <LabCard title={t('laboratory', 'c1_title')} tag={t('laboratory', 'c1_tag')} colSpan={2}><CmdKPalette /></LabCard>
+        <LabCard title={t('laboratory', 'c2_title')} tag={t('laboratory', 'c2_tag')}><StatusPicker /></LabCard>
+        <LabCard title={t('laboratory', 'c3_title')} tag={t('laboratory', 'c3_tag')}><PerspectiveCard /></LabCard>
 
         {/* Row 2 */}
-        <LabCard title="Kanban Reorder" tag="Workspace" colSpan={2}><DragDropList /></LabCard>
-        <LabCard title="Animated Tabs" tag="Layout"><AnimatedTabs /></LabCard>
-        <LabCard title="Hold to Delete" tag="Safety UX"><HoldToConfirm /></LabCard>
+        <LabCard title={t('laboratory', 'c4_title')} tag={t('laboratory', 'c4_tag')} colSpan={2}><DragDropList /></LabCard>
+        <LabCard title={t('laboratory', 'c5_title')} tag={t('laboratory', 'c5_tag')}><AnimatedTabs /></LabCard>
+        <LabCard title={t('laboratory', 'c6_title')} tag={t('laboratory', 'c6_tag')}><HoldToConfirm /></LabCard>
 
         {/* Row 3 */}
-        <LabCard title="Auto-Focus OTP" tag="Security" colSpan={2}><PremiumOTP /></LabCard>
-        <LabCard title="Multi-Tag Input" tag="Forms" colSpan={2}><MultiTagInput /></LabCard>
+        <LabCard title={t('laboratory', 'c7_title')} tag={t('laboratory', 'c7_tag')} colSpan={2}><PremiumOTP /></LabCard>
+        <LabCard title={t('laboratory', 'c8_title')} tag={t('laboratory', 'c8_tag')} colSpan={2}><MultiTagInput /></LabCard>
 
         {/* Row 4 */}
-        <LabCard title="Search Shift" tag="Nav UI"><PremiumSearch /></LabCard>
-        <LabCard title="Password Strength" tag="Forms"><PasswordMeter /></LabCard>
-        <LabCard title="Skeleton Morphing" tag="Loading State"><SkeletonMorph /></LabCard>
-        <LabCard title="Voice Visualizer" tag="AI Animation"><VoiceVisualizer /></LabCard>
+        <LabCard title={t('laboratory', 'c9_title')} tag={t('laboratory', 'c9_tag')}><PremiumSearch /></LabCard>
+        <LabCard title={t('laboratory', 'c10_title')} tag={t('laboratory', 'c10_tag')}><PasswordMeter /></LabCard>
+        <LabCard title={t('laboratory', 'c11_title')} tag={t('laboratory', 'c11_tag')}><SkeletonMorph /></LabCard>
+        <LabCard title={t('laboratory', 'c12_title')} tag={t('laboratory', 'c12_tag')}><VoiceVisualizer /></LabCard>
 
         {/* Row 5 */}
-        <LabCard title="Swipe Unlock" tag="Mobile UX"><SwipeToUnlock /></LabCard>
-        <LabCard title="Like Reaction" tag="Feedback UI"><LikeButton /></LabCard>
-        <LabCard title="Hardware Volume" tag="Inputs"><VolumeSlider /></LabCard>
-        <LabCard title="Submit State Loading" tag="Buttons"><LoadingSubmit /></LabCard>
+        <LabCard title={t('laboratory', 'c13_title')} tag={t('laboratory', 'c13_tag')}><SwipeToUnlock /></LabCard>
+        <LabCard title={t('laboratory', 'c14_title')} tag={t('laboratory', 'c14_tag')}><LikeButton /></LabCard>
+        <LabCard title={t('laboratory', 'c15_title')} tag={t('laboratory', 'c15_tag')}><VolumeSlider /></LabCard>
+        <LabCard title={t('laboratory', 'c16_title')} tag={t('laboratory', 'c16_tag')}><LoadingSubmit /></LabCard>
 
       </div>
     </section>

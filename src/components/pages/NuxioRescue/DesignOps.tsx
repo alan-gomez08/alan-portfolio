@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export function DesignOps() {
+  const { t } = useLanguage();
+
   return (
     <motion.section 
       initial={{ opacity: 0, y: 20 }}
@@ -11,17 +14,16 @@ export function DesignOps() {
     >
       <div className="w-full xl:w-fit mx-auto bg-gray-50 rounded-[32px] shadow-md px-8 py-12 flex flex-col xl:flex-row items-center gap-16">
         
-        {/* Columna Izquierda */}
         <div className="w-full xl:w-[460px] flex flex-col justify-start items-start gap-6 shrink-0">
           
           <div className="px-2 py-1 bg-blue-50 rounded-sm flex justify-center items-center gap-2.5">
             <span className="text-blue-600 text-xs font-bold font-['Geist_Mono'] uppercase leading-4 tracking-wide">
-              DESIGN OPS
+              {t('nuxio', 'dops_badge')}
             </span>
           </div>
           
           <h3 className="w-full xl:w-[460px] text-gray-900 text-4xl font-bold leading-[48px]">
-            Reverse Engineering and Atomic System
+            {t('nuxio', 'dops_title')}
           </h3>
           
           <div className="relative">
@@ -31,28 +33,26 @@ export function DesignOps() {
           </div>
           
           <p className="w-full xl:w-[460px] text-gray-500 text-base font-normal leading-6">
-            Standardization of interactive components mapped directly to Tailwind CSS classes. We eliminated layout shifts by unifying borders at 1px and improved the accessibility of the error state following WCAG regulations, all without rewriting the code base.
+            {t('nuxio', 'dops_desc')}
           </p>
 
-          {/* Bloque de métricas: Sin tipografía mono, usando flex-1 para que respiren parejo */}
           <div className="w-full xl:w-[460px] pt-2 flex justify-start items-start gap-6">
             <div className="flex-1 flex flex-col justify-start items-start gap-1">
-              <span className="text-gray-900 text-3xl font-bold leading-8">48+</span>
-              <span className="text-gray-400 text-xs font-normal uppercase leading-4 tracking-wide">Components</span>
+              <span className="text-gray-900 text-3xl font-bold leading-8">{t('nuxio', 'dops_stat1_val')}</span>
+              <span className="text-gray-400 text-xs font-normal uppercase leading-4 tracking-wide">{t('nuxio', 'dops_stat1_label')}</span>
             </div>
             <div className="flex-1 flex flex-col justify-start items-start gap-1">
-              <span className="text-gray-900 text-3xl font-bold leading-8">120+</span>
-              <span className="text-gray-400 text-xs font-normal uppercase leading-4 tracking-wide">Tokens</span>
+              <span className="text-gray-900 text-3xl font-bold leading-8">{t('nuxio', 'dops_stat2_val')}</span>
+              <span className="text-gray-400 text-xs font-normal uppercase leading-4 tracking-wide">{t('nuxio', 'dops_stat2_label')}</span>
             </div>
             <div className="flex-1 flex flex-col justify-start items-start gap-1">
-              <span className="text-gray-900 text-3xl font-bold leading-8">AA</span>
-              <span className="text-gray-400 text-xs font-normal uppercase leading-4 tracking-wide">WCAG Level</span>
+              <span className="text-gray-900 text-3xl font-bold leading-8">{t('nuxio', 'dops_stat3_val')}</span>
+              <span className="text-gray-400 text-xs font-normal uppercase leading-4 tracking-wide">{t('nuxio', 'dops_stat3_label')}</span>
             </div>
           </div>
 
         </div>
         
-        {/* Columna Derecha */}
         <div className="w-full xl:w-[614px] shrink-0">
           <img 
             src="/NuxioRescueimg/DesignOps.png" 

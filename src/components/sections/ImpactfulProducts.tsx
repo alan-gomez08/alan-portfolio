@@ -48,9 +48,14 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
     }
   ];
 
+  // --- Función para navegar en Mobile (Solo hacia adelante) ---
+  const nextProject = () => {
+    setActiveProject((prev) => (prev === products.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <section id="impactful-products" className="w-full flex justify-center pt-10 pb-24 border-t border-white/5 scroll-mt-14">
-      <div className="w-full max-w-[1533px] px-6 md:px-40 flex flex-col lg:flex-row gap-16 lg:gap-8">
+      <div className="w-full max-w-[1533px] px-6 md:px-40 flex flex-col lg:flex-row gap-12 lg:gap-8">
         
         {/* Columna Izquierda */}
         <div className="w-full lg:w-5/12 flex flex-col justify-between">
@@ -100,8 +105,9 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
         </div>
 
         {/* Columna Derecha */}
-        <div className="w-full lg:w-7/12 lg:pl-12 flex items-center">
-          <div className="w-full aspect-[4/3] relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group">
+        <div className="w-full lg:w-7/12 lg:pl-12 flex items-center relative">
+          <div className="w-full aspect-[4/3] md:aspect-auto md:h-[600px] lg:aspect-[4/3] lg:h-auto relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group">
+            
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProject}
@@ -117,7 +123,18 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                   className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"
                 />
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 flex flex-col justify-end p-8 md:p-12">
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 flex flex-col justify-end p-6 md:p-12 z-10">
+                  
+                  {/* Título del proyecto solo para Mobile */}
+                  <div className="flex flex-col mb-4 lg:hidden">
+                    <span className="text-teal-400 text-[10px] font-mono uppercase tracking-widest mb-1 drop-shadow-md">
+                      {products[activeProject].category}
+                    </span>
+                    <h3 className="text-gray-100 text-3xl font-semibold font-sans drop-shadow-lg">
+                      {products[activeProject].title}
+                    </h3>
+                  </div>
+
                   <div className="flex flex-wrap gap-2 md:gap-3 mb-4">
                     {products[activeProject].tags.map((tag, i) => (
                       <span key={i} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-white text-[10px] font-mono uppercase tracking-wider border border-white/10">
@@ -146,7 +163,34 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                 </div>
               </motion.div>
             </AnimatePresence>
+
+            {/* --- FLECHA DE NAVEGACIÓN MOBILE --- 
+                Única flecha anclada al medio y a la derecha
+            */}
+            <div className="absolute top-1/2 -translate-y-1/2 right-4 lg:hidden z-20 pointer-events-none">
+              <button 
+                onClick={(e) => { e.stopPropagation(); nextProject(); }}
+                className="pointer-events-auto size-10 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white hover:bg-black/70 hover:scale-105 transition-all shadow-lg"
+                aria-label="Siguiente proyecto"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </button>
+            </div>
+
           </div>
+
+          {/* Indicador de progreso (Puntitos) Mobile */}
+          <div className="absolute -bottom-6 left-0 right-0 flex justify-center gap-2 lg:hidden">
+            {products.map((_, idx) => (
+              <div 
+                key={idx} 
+                className={`h-1.5 rounded-full transition-all duration-300 ${activeProject === idx ? 'w-6 bg-teal-500' : 'w-1.5 bg-white/20'}`}
+              />
+            ))}
+          </div>
+
         </div>
 
       </div>

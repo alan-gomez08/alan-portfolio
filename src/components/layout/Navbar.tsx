@@ -26,7 +26,7 @@ export function Navbar({ isCaseStudy = false, onBack, theme = 'dark' }: NavbarPr
     { key: 'products', href: '#impactful-products' },
     { key: 'methodology', href: '#methodology' },
     { key: 'experience', href: '#experience' },
-    { key: 'education', href: '#education' }, // <-- LÍNEA NUEVA
+    { key: 'education', href: '#education' }, 
     { key: 'about', href: '#about' }
   ];
 
@@ -127,6 +127,19 @@ export function Navbar({ isCaseStudy = false, onBack, theme = 'dark' }: NavbarPr
           )}
         </div>
 
+        {/* --- NUEVO: SWITCH DE IDIOMAS PARA MOBILE EN LOS CASE STUDIES --- */}
+        {isCaseStudy && (
+          <div className="flex lg:hidden items-center">
+            <div 
+              onClick={toggleLanguage}
+              className={`p-[3px] rounded-full outline outline-1 flex items-center gap-0.5 cursor-pointer transition-colors ${langSwitchContainer}`}
+            >
+              <button className={`px-2.5 py-1 rounded-full text-[10px] font-mono leading-4 tracking-wide transition-colors ${language === 'en' ? langActiveClass : langInactiveClass}`}>EN</button>
+              <button className={`px-2.5 py-1 rounded-full text-[10px] font-mono leading-4 tracking-wide transition-colors ${language === 'es' ? langActiveClass : langInactiveClass}`}>ES</button>
+            </div>
+          </div>
+        )}
+
         {/* Botón Menú Hamburguesa (Mobile) - Oculto en Case Study */}
         {!isCaseStudy && (
           <button 
@@ -162,7 +175,7 @@ export function Navbar({ isCaseStudy = false, onBack, theme = 'dark' }: NavbarPr
 
           <div className="flex flex-col gap-8 mt-12 w-full items-start">
               
-            {/* SWITCH IDIOMA MOBILE */}
+            {/* SWITCH IDIOMA MOBILE (Página Home) */}
             <div 
               onClick={toggleLanguage}
               className="p-1 bg-white/5 rounded-full outline outline-1 outline-white/10 flex items-center gap-1 w-full max-w-[200px] cursor-pointer"

@@ -106,7 +106,8 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
 
         {/* Columna Derecha */}
         <div className="w-full lg:w-7/12 lg:pl-12 flex items-center relative">
-          <div className="w-full aspect-[4/3] md:aspect-auto md:h-[600px] lg:aspect-[4/3] lg:h-auto relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group">
+          {/* CAMBIO CLAVE: h-[520px] en mobile para que tenga espacio vertical y no se asfixie */}
+          <div className="w-full h-[520px] md:h-[600px] lg:aspect-[4/3] lg:h-auto relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group">
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -123,50 +124,55 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                   className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"
                 />
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 flex flex-col justify-end p-6 md:p-12 z-10">
+                {/* Ajustamos el gradiente para que oscurezca mejor la zona del texto */}
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent flex flex-col justify-end p-6 pb-10 md:p-12 z-10">
                   
-                  {/* Título del proyecto solo para Mobile */}
-                  <div className="flex flex-col mb-4 lg:hidden">
-                    <span className="text-teal-400 text-[10px] font-mono uppercase tracking-widest mb-1 drop-shadow-md">
-                      {products[activeProject].category}
-                    </span>
-                    <h3 className="text-gray-100 text-3xl font-semibold font-sans drop-shadow-lg">
-                      {products[activeProject].title}
-                    </h3>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 md:gap-3 mb-4">
-                    {products[activeProject].tags.map((tag, i) => (
-                      <span key={i} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-white text-[10px] font-mono uppercase tracking-wider border border-white/10">
-                        {tag}
+                  {/* CAMBIO CLAVE: pr-14 en mobile crea un "área segura" para que el texto nunca toque la flecha */}
+                  <div className="flex flex-col lg:pr-0 pr-14">
+                    
+                    {/* Título del proyecto solo para Mobile */}
+                    <div className="flex flex-col mb-4 lg:hidden">
+                      <span className="text-teal-400 text-[10px] font-mono uppercase tracking-widest mb-1 drop-shadow-md">
+                        {products[activeProject].category}
                       </span>
-                    ))}
-                  </div>
-                  <p className="text-gray-300 text-sm md:text-base max-w-md leading-relaxed font-sans drop-shadow-lg">
-                    {products[activeProject].description}
-                  </p>
+                      <h3 className="text-gray-100 text-3xl font-semibold font-sans drop-shadow-lg">
+                        {products[activeProject].title}
+                      </h3>
+                    </div>
 
-                  <button 
-                    onClick={() => onOpenCaseStudy && products[activeProject].urlId && onOpenCaseStudy(products[activeProject].urlId)}
-                    className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6"
-                  >
-                    <span className="text-white text-xs font-sans font-medium uppercase tracking-tight">
-                      {products[activeProject].urlId === 'laboratory' 
-                        ? safeT('lab_link_text', 'View Library') 
-                        : safeT('link', 'View Case Study')}
-                    </span>
-                    <span className="text-white text-xs transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </button>
+                    <div className="flex flex-wrap gap-2 md:gap-3 mb-4">
+                      {products[activeProject].tags.map((tag, i) => (
+                        <span key={i} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-white text-[10px] font-mono uppercase tracking-wider border border-white/10">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <p className="text-gray-300 text-sm md:text-base max-w-md leading-relaxed font-sans drop-shadow-lg">
+                      {products[activeProject].description}
+                    </p>
+
+                    <button 
+                      onClick={() => onOpenCaseStudy && products[activeProject].urlId && onOpenCaseStudy(products[activeProject].urlId)}
+                      className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6"
+                    >
+                      <span className="text-white text-xs font-sans font-medium uppercase tracking-tight">
+                        {products[activeProject].urlId === 'laboratory' 
+                          ? safeT('lab_link_text', 'View Library') 
+                          : safeT('link', 'View Case Study')}
+                      </span>
+                      <span className="text-white text-xs transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
+                    </button>
+
+                  </div>
 
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* --- FLECHA DE NAVEGACIÓN MOBILE --- 
-                Única flecha anclada al medio y a la derecha
-            */}
+            {/* --- FLECHA DE NAVEGACIÓN MOBILE --- */}
             <div className="absolute top-1/2 -translate-y-1/2 right-4 lg:hidden z-20 pointer-events-none">
               <button 
                 onClick={(e) => { e.stopPropagation(); nextProject(); }}

@@ -26,10 +26,8 @@ export function About() {
               <img 
                 src="/portrait.jpg" 
                 alt="Alan Portrait" 
-                // Ajustes: Menos gris, más brillo y contraste por defecto. Al hover se normaliza.
                 className="w-full h-full object-cover grayscale-[0.2] brightness-110 contrast-[1.15] group-hover:grayscale-0 group-hover:brightness-100 group-hover:contrast-100 transition-all duration-700" 
               />
-              {/* Gradiente reducido drásticamente para no tapar la foto */}
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/30 via-zinc-950/5 to-transparent pointer-events-none" />
             </div>
           </motion.div>
@@ -39,11 +37,7 @@ export function About() {
             <div className="flex flex-col gap-6 text-zinc-300 text-base font-sans leading-relaxed">
               <p>{t('about', 'p1')}</p>
               <p>{t('about', 'p2')}</p>
-              <p>
-                {t('about', 'p3_start')}
-                <span className="text-gray-200 font-medium">{t('about', 'p3_highlight')}</span>
-                {t('about', 'p3_end')}
-              </p>
+              <p>{t('about', 'p3')}</p>
             </div>
           </div>
 

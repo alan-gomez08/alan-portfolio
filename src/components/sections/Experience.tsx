@@ -9,14 +9,14 @@ export function Experience() {
       period: t('experience', 'exp1_period'), 
       company: t('experience', 'exp1_company'), 
       role: t('experience', 'exp1_role'), 
-      description: t('experience', 'exp1_desc'), 
+      items: t('experience', 'exp1_items'), // Ahora traemos el array completo
       tags: ["AI UX", "CRO", "System Design"] 
     },
     { 
       period: t('experience', 'exp2_period'), 
       company: t('experience', 'exp2_company'), 
       role: t('experience', 'exp2_role'), 
-      description: t('experience', 'exp2_desc'), 
+      items: t('experience', 'exp2_items'), // Ahora traemos el array completo
       tags: ["Leadership", "B2B", "Design Systems"] 
     }
   ];
@@ -24,6 +24,7 @@ export function Experience() {
   return (
     <section id="experience" className="w-full flex justify-center pt-10 pb-24 border-t border-white/5 scroll-mt-14">
       <div className="w-full max-w-[1533px] px-6 md:px-40 flex flex-col gap-12">
+        
         <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} className="flex flex-col gap-3">
           <span className="text-zinc-500 text-[10px] font-mono uppercase tracking-[0.2em]">
             {t('experience', 'badge')}
@@ -49,10 +50,27 @@ export function Experience() {
                 </div>
               </div>
 
-              {/* Columna Derecha */}
-              <div className="flex-1 flex flex-col gap-4">
+              {/* Columna Derecha (Ahora con Sub-ítems) */}
+              <div className="flex-1 flex flex-col gap-6">
                 <h3 className="text-gray-200 text-xl font-semibold font-sans">{exp.role}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed max-w-2xl">{exp.description}</p>
+                
+                {/* Lista de logros / responsabilidades */}
+                <div className="flex flex-col gap-5 mt-1">
+                  {exp.items && exp.items.map((item: { title: string, desc: string }, idx: number) => (
+                    <div key={idx} className="flex flex-col gap-1.5">
+                      <h4 className="text-gray-200 text-sm font-medium font-sans flex items-center gap-2.5">
+                        <span className="w-[3px] h-[3px] bg-teal-500 rounded-full inline-block" />
+                        {item.title}
+                      </h4>
+                      {/* Una línea sutil a la izquierda para "conectar" el título con la descripción */}
+                      <p className="text-zinc-400 text-sm leading-relaxed pl-3.5 border-l border-white/5 ml-0.5">
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Etiquetas */}
                 <div className="flex flex-wrap gap-4 mt-2">
                   {exp.tags.map((tag, i) => <span key={i} className="text-zinc-500 text-[10px] font-mono uppercase tracking-widest">{tag}</span>)}
                 </div>

@@ -14,7 +14,7 @@ const translations = {
       cv: "Download CV"
     },
     hero: {
-      badge: "Senior Product Designer & UX Engineer",
+      badge: "PRODUCT DESIGNER & UX ENGINEER",
       title1: "Product design",
       title2: "driven by engineering",
       scramble: "rigor.",
@@ -24,17 +24,17 @@ const translations = {
     products: {
       badge: "01 — Impactful Products",
       title: "Selected Work",
-      subtitle: "Projects where design architecture and code quality intersect to solve real business problems.",
+      subtitle: "Projects where UX architecture and code scalability intersect to solve real business problems.",
       nuxio_cat: "Industrial B2B",
-      nuxio_desc: "A critical dashboard for industrial emergency response. Simplified complex data streams into actionable, high-contrast UI for stressful environments.",
+      nuxio_desc: "Critical dashboard for industrial emergency response. Transformed complex data streams into an accessible, high-contrast UI, building a scalable design system for seamless React integration.",
       electro_cat: "E-Commerce",
       electro_desc: "A high-conversion frontend built with React and Firebase. Focused on micro-interactions and a frictionless checkout process.",
       figma_cat: "AI Tooling",
       figma_desc: "Component library and strict layout prompts tailored for AI-driven design generation within the Material Design 3 ecosystem.",
       agentic_cat: "AI B2B SAAS",
-      agentic_desc: "Designed a complete B2B SaaS platform for an AI from scratch, focusing on scalability, data density, and user experience.",
+      agentic_desc: "End-to-end product design for an AI-driven B2B SaaS. Architected high-density data interfaces and scalable component libraries in Figma, optimized for complex technical workflows.",
       lab_cat: "REACT COMPONENTS",
-      lab_desc: "A curated collection of our highlights: UI components designed with millimeter precision and translated into clean React code across various projects.",
+      lab_desc: "A curated library of custom UI components. Bridging the gap between design and development through pixel-perfect, component-driven React architecture and Tailwind CSS.",
       link: "View Case Study",
       lab_link_text: "View Library"
     },
@@ -86,29 +86,36 @@ const translations = {
     },
     methodology: {
       badge: "03 — Methodology",
-      title: "The Logic‑First Method",
+      title: "The Logic-First Method",
       m1_title: "Information Architecture",
       m1_desc: "Designing structures that support software growth, not just isolated screens. Every hierarchy is intentional, every flow is validated before a pixel moves.",
       m2_title: "Technical Viability",
       m2_desc: "An engineering background eliminates rework. I design within real constraints — implementable interfaces that developers build with confidence.",
       m3_title: "Smart Prototyping",
-      m3_desc: "Modern tools (React, AI) validate experiences in production-like environments before a single line of production code is written."
+      m3_desc: "Modern tools validate experiences in production-like environments before a single line of production code is written."
     },
     experience: {
       badge: "04 — Career",
       title: "Work Experience",
       exp1_period: "2024 — Present",
       exp1_company: "Independent",
-      exp1_role: "Freelance Product Designer",
-      exp1_desc: "Focus on AI-driven products and Conversion Rate Optimization. Collaborating with startups and established brands to ship impactful design solutions.",
+      exp1_role: "Freelance Product Designer & UX Engineer",
+      exp1_items: [
+        { title: "Consulting & UX Research", desc: "Led discovery sessions and user research with independent clients to define end-to-end product strategies (0 to 1), ensuring business viability." },
+        { title: "UI Engineering & AI Workflows", desc: "Architected robust Design Systems leveraging advanced Figma capabilities (Auto Layout, variables). Integrated AI tools (Claude, Figma Make) to drastically accelerate UI generation and prototyping cycles." },
+        { title: "Frontend Development & Handoff", desc: "Engineered production-ready SPAs using React and Tailwind CSS. Handled basic integrations with services like Firebase, ensuring pixel-perfect execution and bridging the gap with developers through Storybook." },
+        { title: "Brand Identity & UX Copywriting", desc: "Crafted comprehensive brand identities, including logo design and strategic UX copywriting focused on Conversion Rate Optimization (CRO)." }
+      ],
       exp2_period: "2025 — 2026",
       exp2_company: "Nuxio Software",
       exp2_role: "UX Lead",
-      exp2_desc: "Team leadership & critical industrial platforms. Led design strategy for complex B2B products, mentoring junior designers and establishing design systems.",
-      exp3_period: "In Progress",
-      exp3_company: "University National of Hurlingham",
-      exp3_role: "Computer Engineering",
-      exp3_desc: "Building an algorithmic foundation. Bridging the gap between design intuition and engineering precision through formal computer science education."
+      exp2_items: [
+        { title: "Team Leadership & Multi-Project Management", desc: "Directed 2 junior designers and managed up to 5 concurrent product lifecycles utilizing Agile methodologies and Sprint frameworks." },
+        { title: "Critical Business Impact", desc: "Led the rapid, end-to-end redesign of the \"Nuxio Rescue\" platform under high-pressure constraints, directly preventing client churn and securing a strategic B2B account." },
+        { title: "Cross-Functional Collaboration", desc: "Facilitated daily stand-ups with engineering teams and weekly alignment sessions to cross-examine technical feasibility and streamline the design-to-development handoff." },
+        { title: "Stakeholder Management", desc: "Conducted direct presentations with corporate clients, translating complex technical and business requirements into clear product roadmaps." },
+        { title: "Prototyping & Marketing Assets", desc: "Built high-fidelity prototypes in Figma and designed optimized visual assets for commercial deployment on the App Store and Google Play." }
+      ]
     },
     education: {
       badge: "05 — Education",
@@ -116,36 +123,41 @@ const translations = {
       cert_btn: "View Certification",
       coming_soon_btn: "Coming Soon",
       coderhouse_inst: "CoderHouse",
-      react_title: "React Front-End Certification",
-      react_desc: "Building scalable, high-performance single-page applications using modern React ecosystems, hooks, and advanced state management.",
-      js_title: "JavaScript Certification",
-      js_desc: "Advanced programming concepts, DOM manipulation, asynchronous JavaScript, and modern ES6+ features.",
-      web_title: "Web Development Certification",
-      web_desc: "Foundational training in HTML, CSS, responsive design, grids, flexbox, and modern web architecture.",
-      ux_title: "UX/UI Design Certification",
-      ux_desc: "Comprehensive training in user-centered design, product strategy, and design systems for complex digital interfaces.",
       eng_title: "Computer Engineering",
-      eng_desc: "Building an algorithmic foundation. Bridging the gap between design intuition and engineering precision through formal computer science education.",
-      eng_inst: "University National of Hurlingham",
-      eng_year: "2022 - In Progress"
+      eng_desc: "Building a strong algorithmic foundation and deep understanding of system architecture. Bridging the gap between design intuition and software engineering precision through formal computer science education.",
+      eng_inst: "National University of Hurlingham (UNAHUR)",
+      eng_year: "2022 — Present",
+      eng_tags: ["ALGORITHMS", "CS THEORY", "DATA STRUCTURES"],
+      react_title: "React Front-End Certification",
+      react_desc: "Engineered scalable, high-performance Single Page Applications (SPAs) using the modern React ecosystem, advanced Hooks, and robust state management.",
+      react_tags: ["REACT", "HOOKS", "STATE MANAGEMENT", "PERFORMANCE"],
+      js_title: "JavaScript Certification",
+      js_desc: "Mastered advanced programming paradigms, complex DOM manipulation, asynchronous JavaScript logic, and modern ES6+ features.",
+      js_tags: ["JAVASCRIPT", "DOM", "ASYNC", "ES6+"],
+      web_title: "Web Development Certification",
+      web_desc: "Foundational UI engineering training in HTML5, CSS3, responsive design patterns, CSS Grid, Flexbox, and modern web architecture.",
+      web_tags: ["HTML5", "CSS3", "RESPONSIVE", "FLEXBOX"],
+      ux_title: "UX/UI Design Certification",
+      ux_desc: "Comprehensive training in user-centered design, end-to-end product strategy, and scalable design systems for complex B2B digital interfaces.",
+      ux_tags: ["UX RESEARCH", "PROTOTYPING", "DESIGN SYSTEMS", "FIGMA", "B2B"]
     },
     about: {
       badge: "06 — About",
       title: "The Designer Behind the Work",
-      p1: "I link design consistency with logic. As a Senior Product Designer and former UX Lead, I approach every project with the belief that truly great design isn't just beautiful — it's functional, scalable, and technically sound.",
-      p2: "My engineering background gives me a unique perspective. I don't just hand off mockups — I understand the constraints and possibilities of the code.",
-      p3_start: "Beyond client work, I lead a growing design community of ",
-      p3_highlight: "12,000+ professionals",
-      p3_end: "."
+      p1: "I’m Alan, a Product Designer and UX Engineer, blending my academic background in Computer Engineering with an obsessive focus on user experience. My philosophy is straightforward: great design shouldn't just look flawless; it must be technically viable, scalable, and solve real business problems.",
+      p2: "I thrive at the exact intersection of Figma and frontend development. My expertise ranges from architecting complex Design Systems and leveraging AI to supercharge workflows, to translating those interfaces into clean React code using Tailwind CSS and Storybook. Whether I’m leading a design team, turning around a critical corporate account under tight deadlines, or building a SaaS product from 0 to 1, my focus is always on efficiency and impact.",
+      p3: "When I’m not documenting UI components or structuring databases, I apply that same discipline to my gym routine, or I'm behind the camera, documenting my design process and sharing tutorials to help grow the tech community."
     },
     contact: {
-      badge: "Get in touch",
+      badge: "GET IN TOUCH",
       title: "Let's talk about your next product.",
-      desc: "Available for select freelance projects and full-time opportunities. Reach out to discuss how design and engineering rigor can accelerate your product.",
+      desc: "Available for select freelance projects and full-time opportunities. Reach out to discuss how strategic design and engineering rigor can accelerate your development cycle.",
       btn: "Send Email",
-      subtext: "hello@alan.design · Usually responds within 24h",
+      subtext: "hello@alan.design · Usually responds in under 24h",
       motto: "Functional beauty, always.",
-      resume: "Resume"
+      resume: "Resume",
+      linkedin: "LinkedIn",
+      behance: "Behance"
     },
     agentic: {
       hero_title: "Agentic OS:",
@@ -178,10 +190,10 @@ const translations = {
       workflow_badge: "04 — WORKFLOW",
       workflow_title: "From Figma to Storybook",
       core_badge: "05 — Core Workflows",
-      core_title: "Agentic OS: The Core Experience",
-      core_desc: "We visualize the complete platform, orchestrating high-density data and agent control in a unified and efficient dashboard.",
+      core_title: "Agentic OS: La Experiencia Core",
+      core_desc: "Visualizamos la plataforma completa, orquestando datos de alta densidad y el control de agentes en un dashboard unificado y eficiente.",
       outcomes_badge: "06 — OUTCOMES & IMPACT",
-      outcomes_title: "Results and Team Validation",
+      outcomes_title: "Resultados y Validación del Equipo",
       metric1_title: "Handoff acceleration",
       metric1_desc: "Reduction of time to code by automating base components.",
       metric2_title: "Visual Consistency",
@@ -306,27 +318,27 @@ const translations = {
       cv: "Descargar CV"
     },
     hero: {
-      badge: "Diseñador de Producto Senior & UX Engineer",
+      badge: "PRODUCT DESIGNER & UX ENGINEER",
       title1: "Diseño de producto",
-      title2: "impulsado por la ingeniería",
-      scramble: "rigor.",
-      link1: "Proyectos",
-      link2: "Metodología"
+      title2: "impulsado por",
+      scramble: "rigor técnico.",
+      link1: "Ver proyectos",
+      link2: "Mi metodología"
     },
     products: {
       badge: "01 — Productos de Impacto",
-      title: "Trabajo Destacado",
-      subtitle: "Proyectos donde la arquitectura de diseño y la calidad del código se interceptan para resolver problemas reales de negocio.",
+      title: "Proyectos Clave",
+      subtitle: "Proyectos donde la arquitectura UX y la escalabilidad del código se unen para resolver problemas de negocio.",
       nuxio_cat: "B2B Industrial",
-      nuxio_desc: "Un panel crítico para la respuesta a emergencias industriales. Flujos de datos complejos simplificados en una interfaz procesable y de alto contraste para entornos de alta tensión.",
+      nuxio_desc: "Dashboard crítico para respuesta a emergencias. Transformación de flujos de datos complejos en una interfaz accesible y de alto contraste. Creación de un sistema de diseño escalable para optimizar la integración con React.",
       electro_cat: "E-Commerce",
       electro_desc: "Un frontend de alta conversión construido con React y Firebase. Enfocado en micro-interacciones y un proceso de pago sin fricciones.",
       figma_cat: "Herramientas de IA",
       figma_desc: "Librería de componentes y prompts de layout estrictos diseñados para la generación de interfaces con IA dentro del ecosistema de Material Design 3.",
       agentic_cat: "SAAS B2B DE IA",
-      agentic_desc: "Diseñé una plataforma SaaS B2B completa para una IA desde cero, enfocada en escalabilidad, densidad de datos y experiencia de usuario.",
+      agentic_desc: "Diseño end-to-end de un SaaS B2B impulsado por IA. Arquitectura de interfaces con alta densidad de datos y librerías de componentes escalables en Figma, optimizadas para flujos de trabajo técnicos.",
       lab_cat: "COMPONENTES REACT",
-      lab_desc: "Una colección curada de nuestros destacados: componentes UI diseñados con precisión milimétrica y traducidos a código React limpio en varios proyectos.",
+      lab_desc: "Librería curada de componentes UI personalizados. Uniendo la brecha entre el diseño y el frontend mediante una arquitectura React basada en componentes y Tailwind CSS, con enfoque pixel-perfect.",
       link: "Ver Caso de Estudio",
       lab_link_text: "Ver Librería"
     },
@@ -378,29 +390,36 @@ const translations = {
     },
     methodology: {
       badge: "03 — Metodología",
-      title: "El Método Basado en Lógica",
-      m1_title: "Arquitectura de la Información",
-      m1_desc: "Diseño de estructuras que soportan el crecimiento del software, no solo pantallas aisladas. Cada jerarquía es intencional, cada flujo es validado antes de mover un píxel.",
+      title: "El Método Centrado en la Lógica",
+      m1_title: "Arquitectura de Información",
+      m1_desc: "Diseñando estructuras que soportan el crecimiento del software, no solo pantallas aisladas. Cada jerarquía es intencional, cada flujo se valida antes de mover un píxel.",
       m2_title: "Viabilidad Técnica",
-      m2_desc: "Tener formación en ingeniería elimina el retrabajo. Diseño dentro de restricciones reales: interfaces implementables que los desarrolladores pueden construir con confianza.",
+      m2_desc: "Mi background técnico elimina el retrabajo. Diseño bajo restricciones reales: interfaces implementables que los desarrolladores pueden construir con confianza.",
       m3_title: "Prototipado Inteligente",
-      m3_desc: "Las herramientas modernas (React, IA) validan las experiencias en entornos similares a producción antes de escribir una sola línea de código."
+      m3_desc: "Uso de herramientas modernas para validar experiencias en entornos cuasi-reales antes de escribir una sola línea de código en producción."
     },
     experience: {
       badge: "04 — Carrera",
       title: "Experiencia Laboral",
       exp1_period: "2024 — Presente",
       exp1_company: "Independiente",
-      exp1_role: "Diseñador de Producto Freelance",
-      exp1_desc: "Enfoque en productos impulsados por IA y Optimización de la Tasa de Conversión. Colaborando con startups y marcas establecidas para lanzar soluciones de diseño impactantes.",
+      exp1_role: "Diseñador de Producto & Desarrollador Freelance",
+      exp1_items: [
+        { title: "Consultoría y UX Research", desc: "Conducción de reuniones de descubrimiento con clientes y usuarios finales para definir la estrategia de producto desde cero (0 a 1), asegurando la viabilidad del negocio." },
+        { title: "Ingeniería UI y Workflows con IA", desc: "Arquitectura de Design Systems robustos utilizando funcionalidades avanzadas de Figma (Auto Layouts, variables). Integración de herramientas de IA (Claude, Figma Make) para agilizar drásticamente los flujos de creación de UI y la iteración de prototipos." },
+        { title: "Desarrollo Frontend & Handoff", desc: "Traducción de interfaces a Single Page Applications (SPAs) listas para producción usando React y Tailwind CSS. Integración básica con servicios como Firebase, asegurando una implementación pixel-perfect y eliminando la fricción con los desarrolladores a través de Storybook." },
+        { title: "Identidad Visual y UX Copywriting", desc: "Desarrollo integral de la marca, incluyendo diseño de logotipos, material gráfico y redacción estratégica (copywriting) orientada a la optimización de la tasa de conversión (CRO)." }
+      ],
       exp2_period: "2025 — 2026",
       exp2_company: "Nuxio Software",
       exp2_role: "UX Lead",
-      exp2_desc: "Liderazgo de equipos y plataformas industriales críticas. Lideré la estrategia de diseño para productos B2B complejos, guiando a diseñadores junior y estableciendo sistemas de diseño.",
-      exp3_period: "En Progreso",
-      exp3_company: "Universidad Nacional de Hurlingham",
-      exp3_role: "Ingeniería Informática",
-      exp3_desc: "Construyendo una base algorítmica. Cerrando la brecha entre la intuición del diseño y la precisión de la ingeniería a través de la educación formal en ciencias de la computación."
+      exp2_items: [
+        { title: "Liderazgo de Equipo y Gestión Multiproyecto", desc: "Dirección de 2 diseñadores junior y gestión simultánea de hasta 5 proyectos de producto bajo metodologías ágiles y sprints." },
+        { title: "Impacto de Negocio Crítico", desc: "Liderazgo del rediseño integral de la plataforma \"Nuxio Rescue\" en un entorno de alta presión temporal, logrando la retención estratégica de una cuenta B2B clave." },
+        { title: "Colaboración Cross-Functional", desc: "Facilitación de daily stand-ups con el equipo de ingeniería y sesiones semanales de alineación para validar la viabilidad técnica y agilizar el traspaso (handoff) de diseño a desarrollo." },
+        { title: "Gestión de Stakeholders", desc: "Presentaciones directas con clientes corporativos, traduciendo requisitos técnicos y de negocio complejos en hojas de ruta de producto claras." },
+        { title: "Prototipado y Activos de Marketing", desc: "Creación de prototipos interactivos en Figma y optimización de material gráfico comercial para despliegues en App Store y Google Play." }
+      ]
     },
     education: {
       badge: "05 — Educación",
@@ -408,36 +427,41 @@ const translations = {
       cert_btn: "Ver Certificación",
       coming_soon_btn: "Muy pronto",
       coderhouse_inst: "CoderHouse",
-      react_title: "Certificación Front-End en React",
-      react_desc: "Construcción de aplicaciones de página única escalables y de alto rendimiento utilizando ecosistemas modernos de React, hooks y manejo de estado.",
-      js_title: "Certificación en JavaScript",
-      js_desc: "Conceptos avanzados de programación, manipulación del DOM, JavaScript asíncrono y características de ES6+.",
-      web_title: "Certificación en Desarrollo Web",
-      web_desc: "Formación fundamental en HTML, CSS, diseño responsivo, grids, flexbox y arquitectura web moderna.",
-      ux_title: "Certificación en Diseño UX/UI",
-      ux_desc: "Formación integral en diseño centrado en el usuario, estrategia de producto y sistemas de diseño para interfaces digitales complejas.",
       eng_title: "Ingeniería Informática",
-      eng_desc: "Construyendo una base algorítmica. Cerrando la brecha entre la intuición del diseño y la precisión de la ingeniería a través de la educación formal en ciencias de la computación.",
-      eng_inst: "Universidad Nacional de Hurlingham",
-      eng_year: "2022 - En Progreso"
+      eng_desc: "Construyendo una sólida base algorítmica y comprensión de la arquitectura de sistemas. Uniendo la intuición del diseño con la precisión del desarrollo de software a través de formación académica formal.",
+      eng_inst: "Universidad Nacional de Hurlingham (UNAHUR)",
+      eng_year: "2022 — Presente",
+      eng_tags: ["ALGORITHMS", "CS THEORY", "DATA STRUCTURES"],
+      react_title: "Certificación React Front-End",
+      react_desc: "Desarrollo de Single Page Applications (SPAs) escalables y de alto rendimiento utilizando el ecosistema moderno de React, Hooks avanzados y gestión de estados complejos.",
+      react_tags: ["REACT", "HOOKS", "STATE MANAGEMENT", "PERFORMANCE"],
+      js_title: "Certificación JavaScript",
+      js_desc: "Dominio de paradigmas de programación avanzados, manipulación compleja del DOM, lógica asíncrona de JavaScript y características modernas de ES6+.",
+      js_tags: ["JAVASCRIPT", "DOM", "ASYNC", "ES6+"],
+      web_title: "Certificación en Desarrollo Web",
+      web_desc: "Formación fundamental en ingeniería UI con HTML5, CSS3, patrones de diseño responsive, CSS Grid, Flexbox y arquitectura web moderna.",
+      web_tags: ["HTML5", "CSS3", "RESPONSIVE", "FLEXBOX"],
+      ux_title: "Certificación en Diseño UX/UI",
+      ux_desc: "Formación integral en diseño centrado en el usuario, estrategia de producto end-to-end y creación de sistemas de diseño escalables para interfaces B2B complejas.",
+      ux_tags: ["UX RESEARCH", "PROTOTYPING", "DESIGN SYSTEMS", "FIGMA", "B2B"]
     },
     about: {
       badge: "06 — Sobre Mí",
       title: "El Diseñador Detrás del Trabajo",
-      p1: "Vinculo la consistencia del diseño con la lógica. Como Diseñador de Producto Senior y ex UX Lead, abordo cada proyecto con la creencia de que un diseño verdaderamente excelente no solo es hermoso: es funcional, escalable y técnicamente sólido.",
-      p2: "Mi formación en ingeniería me da una perspectiva única. No me limito a entregar mockups: entiendo las limitaciones y posibilidades del código.",
-      p3_start: "Más allá del trabajo con clientes, lidero una creciente comunidad de diseño de ",
-      p3_highlight: "más de 12.000 profesionales",
-      p3_end: "."
+      p1: "Soy Alan, Product Designer y UX Engineer, combinando mi formación académica en Ingeniería Informática con una visión obsesiva por la experiencia de usuario. Mi filosofía es directa: un gran diseño no solo debe ser estéticamente impecable; tiene que ser viable, escalable y resolver problemas de negocio reales.",
+      p2: "Trabajo en la intersección exacta entre Figma y el frontend. Mi día a día abarca desde la arquitectura de Design Systems complejos y la integración de IA para acelerar flujos de trabajo, hasta la traducción de esas interfaces a código React limpio utilizando Tailwind CSS y Storybook. Ya sea liderando un equipo de diseño, rescatando una cuenta corporativa en tiempo récord o creando un producto SaaS de 0 a 1, mi enfoque siempre está en la eficiencia.",
+      p3: "Cuando no estoy documentando componentes o estructurando bases de datos, aplico esa misma constancia en el gimnasio, o me dedico a documentar el \"detrás de escena\" de mi proceso de diseño, creando contenido y tutoriales para compartir con la comunidad tech."
     },
     contact: {
-      badge: "Ponte en contacto",
-      title: "Hablemos de tu próximo producto.",
-      desc: "Disponible para proyectos freelance seleccionados y oportunidades a tiempo completo. Contáctame para discutir cómo el rigor en diseño e ingeniería puede acelerar tu producto.",
+      badge: "CONTACTO",
+      title: "Hablemos sobre tu próximo producto.",
+      desc: "Disponible para proyectos freelance seleccionados y oportunidades full-time. Contactame para hablar sobre cómo el diseño estratégico y el rigor técnico pueden acelerar tu desarrollo.",
       btn: "Enviar Email",
-      subtext: "hello@alan.design · Usualmente responde en 24h",
-      motto: "Belleza funcional, siempre.",
-      resume: "Currículum"
+      subtext: "hello@alan.design · Usualmente respondo en menos de 24hs",
+      motto: "Diseño funcional, siempre.",
+      resume: "Descargar CV",
+      linkedin: "LinkedIn",
+      behance: "Behance"
     },
     agentic: {
       hero_title: "Agentic OS:",
@@ -595,7 +619,7 @@ type Translations = typeof translations.en;
 interface LanguageContextType {
   language: Language;
   toggleLanguage: () => void;
-  t: (section: keyof Translations, key: string) => string;
+  t: (section: keyof Translations, key: string) => any;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -607,7 +631,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguage((prev) => (prev === 'en' ? 'es' : 'en'));
   };
 
-  const t = (section: keyof Translations, key: string): string => {
+  const t = (section: keyof Translations, key: string): any => {
     return (translations[language][section] as any)[key] || key;
   };
 

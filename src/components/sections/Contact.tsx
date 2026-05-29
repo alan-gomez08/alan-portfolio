@@ -4,8 +4,12 @@ import { useLanguage } from '../../context/LanguageContext';
 export function Contact() {
   const { t } = useLanguage();
 
-  // Mezclamos links estáticos con la traducción dinámica para el CV
-  const footerLinks = ['LinkedIn', 'GitHub', 'Gumroad', t('contact', 'resume')];
+  // Links del Footer completamente dinámicos desde el LanguageContext
+  const footerLinks = [
+    { name: t('contact', 'linkedin'), url: "#" }, // <-- Poné tu link a LinkedIn acá
+    { name: t('contact', 'behance'), url: "#" },  // <-- Poné tu link a Behance acá
+    { name: t('contact', 'resume'), url: "#" }    // <-- Poné el link a tu PDF del CV acá
+  ];
 
   return (
     <section id="contact" className="w-full flex flex-col items-center pt-32 border-t border-white/5">
@@ -78,10 +82,14 @@ export function Contact() {
             {footerLinks.map((link, index) => (
               <a 
                 key={index} 
-                href="#" 
-                className="text-zinc-500 hover:text-gray-200 text-xs font-sans transition-colors"
+                href={link.url} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-500 hover:text-gray-200 text-xs font-sans transition-colors flex items-center gap-1 group"
               >
-                {link}
+                {link.name}
+                {/* Agregamos la flechita sutil como en la sección About */}
+                <span className="text-[10px] opacity-0 group-hover:opacity-100 transition-all -translate-y-px">↗</span>
               </a>
             ))}
           </div>

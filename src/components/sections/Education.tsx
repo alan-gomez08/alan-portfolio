@@ -17,14 +17,25 @@ export function Education() {
     }
   }, [selectedCert]);
 
+  // Ordenamos con la Universidad primero y traemos los datos dinámicamente
   const educationData = [
+    {
+      id: 'eng',
+      year: t('education', 'eng_year'),
+      inst: t('education', 'eng_inst'),
+      title: t('education', 'eng_title'),
+      desc: t('education', 'eng_desc'),
+      tags: t('education', 'eng_tags'),
+      hasCert: false,
+      isPending: true // Botón de "Próximamente"
+    },
     {
       id: 'react',
       year: '2026',
       inst: t('education', 'coderhouse_inst'),
       title: t('education', 'react_title'),
       desc: t('education', 'react_desc'),
-      tags: ['REACT', 'HOOKS', 'STATE MANAGEMENT', 'PERFORMANCE'],
+      tags: t('education', 'react_tags'),
       hasCert: true,
       isPending: false,
       certImage: '/Certificado React.png'
@@ -35,7 +46,7 @@ export function Education() {
       inst: t('education', 'coderhouse_inst'),
       title: t('education', 'js_title'),
       desc: t('education', 'js_desc'),
-      tags: ['JAVASCRIPT', 'DOM', 'ASYNC', 'ES6+'],
+      tags: t('education', 'js_tags'),
       hasCert: true,
       isPending: false,
       certImage: '/Certificado Js.png'
@@ -46,7 +57,7 @@ export function Education() {
       inst: t('education', 'coderhouse_inst'),
       title: t('education', 'web_title'),
       desc: t('education', 'web_desc'),
-      tags: ['HTML5', 'CSS3', 'RESPONSIVE', 'FLEXBOX'],
+      tags: t('education', 'web_tags'),
       hasCert: true,
       isPending: false,
       certImage: '/Certificado Desarrollo Web.png'
@@ -57,20 +68,10 @@ export function Education() {
       inst: t('education', 'coderhouse_inst'),
       title: t('education', 'ux_title'),
       desc: t('education', 'ux_desc'),
-      tags: ['UX RESEARCH', 'PROTOTYPING', 'DESIGN SYSTEMS', 'FIGMA', 'B2B'],
+      tags: t('education', 'ux_tags'),
       hasCert: true,
       isPending: false,
       certImage: '/Certificado Ux.png'
-    },
-    {
-      id: 'eng',
-      year: t('education', 'eng_year'),
-      inst: t('education', 'eng_inst'),
-      title: t('education', 'eng_title'),
-      desc: t('education', 'eng_desc'),
-      tags: ['ALGORITHMS', 'CS THEORY'],
-      hasCert: false,
-      isPending: true // <--- Agregamos esta propiedad para mostrar el botón de "Próximamente"
     }
   ];
 
@@ -147,8 +148,10 @@ export function Education() {
 
                 </div>
                 <p className="text-zinc-400 text-sm leading-relaxed max-w-2xl">{item.desc}</p>
+                
+                {/* Renderizamos dinámicamente los tags que ahora están en el diccionario */}
                 <div className="flex flex-wrap gap-4 mt-2">
-                  {item.tags.map(tag => (
+                  {item.tags && item.tags.map((tag: string) => (
                     <span key={tag} className="text-zinc-500 text-[10px] font-mono uppercase tracking-widest">{tag}</span>
                   ))}
                 </div>

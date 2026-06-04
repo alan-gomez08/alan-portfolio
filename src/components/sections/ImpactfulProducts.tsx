@@ -25,7 +25,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
       title: "Nuxio Rescue",
       category: safeT('nuxio_cat', "INDUSTRIAL B2B"),
       description: safeT('nuxio_desc', "A complete redesign focused on user experience and accessibility for an emergency rescue platform."),
-      image: "https://placehold.co/800x600/18181b/52525b?text=Nuxio+Rescue",
+      image: "/Nuxio Rescue Cover.png",
       tags: ["UX Research", "Design System", "React"]
     },
     {
@@ -34,7 +34,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
       title: "Agentic OS",
       category: safeT('agentic_cat', "AI B2B SAAS"),
       description: safeT('agentic_desc', "Designed a complete B2B SaaS platform for an AI from scratch, focusing on scalability, data density, and user experience."),
-      image: "/AgenticOsimg/hero-dashboard.png", 
+      image: "/Agentic Os Cover.png", 
       tags: ["UX/UI Design", "Design System", "0 to 1"]
     },
     {
@@ -43,7 +43,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
       title: "The Laboratory",
       category: safeT('lab_cat', "REACT COMPONENTS"),
       description: safeT('lab_desc', "A curated collection of our highlights: UI components designed with millimeter precision and translated into clean React code across various projects."),
-      image: "https://placehold.co/800x600/18181b/52525b?text=The+Laboratory",
+      image: "/The Library Cover.png",
       tags: ["UI Design", "Frontend", "React"] 
     }
   ];
@@ -106,8 +106,8 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
 
         {/* Columna Derecha */}
         <div className="w-full lg:w-7/12 lg:pl-12 flex items-center relative">
-          {/* CAMBIO CLAVE: h-[520px] en mobile para que tenga espacio vertical y no se asfixie */}
-          <div className="w-full h-[520px] md:h-[600px] lg:aspect-[4/3] lg:h-auto relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group">
+          {/* Contenedor principal de la imagen: maneja las alturas dinámicas */}
+          <div className="w-full h-[520px] md:h-[600px] lg:aspect-[4/3] lg:h-auto relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group shadow-2xl">
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -121,13 +121,16 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                 <img 
                   src={products[activeProject].image} 
                   alt={products[activeProject].title}
-                  className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"
+                  // CORRECCIÓN 1: Eliminamos el grayscale para que los colores del mockup resalten. 
+                  // Mantenemos object-cover y el scale en hover.
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 
-                {/* Ajustamos el gradiente para que oscurezca mejor la zona del texto */}
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent flex flex-col justify-end p-6 pb-10 md:p-12 z-10">
+                {/* CORRECCIÓN 2: Gradiente suavizado. Dejamos negro puro abajo (/90) para el texto, 
+                    pero bajamos el centro a /30 para que el mockup brille. */}
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/30 to-transparent flex flex-col justify-end p-6 pb-10 md:p-12 z-10 transition-opacity duration-500">
                   
-                  {/* CAMBIO CLAVE: pr-14 en mobile crea un "área segura" para que el texto nunca toque la flecha */}
+                  {/* Área segura en mobile (pr-14) para que el texto nunca toque la flecha */}
                   <div className="flex flex-col lg:pr-0 pr-14">
                     
                     {/* Título del proyecto solo para Mobile */}
@@ -142,7 +145,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
 
                     <div className="flex flex-wrap gap-2 md:gap-3 mb-4">
                       {products[activeProject].tags.map((tag, i) => (
-                        <span key={i} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-white text-[10px] font-mono uppercase tracking-wider border border-white/10">
+                        <span key={i} className="px-3 py-1 bg-white/5 backdrop-blur-md rounded-full text-gray-200 text-[10px] font-mono uppercase tracking-wider border border-white/10 shadow-sm">
                           {tag}
                         </span>
                       ))}
@@ -154,14 +157,14 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
 
                     <button 
                       onClick={() => onOpenCaseStudy && products[activeProject].urlId && onOpenCaseStudy(products[activeProject].urlId)}
-                      className="group flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6"
+                      className="group flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6 shadow-sm"
                     >
-                      <span className="text-white text-xs font-sans font-medium uppercase tracking-tight">
+                      <span className="text-gray-100 text-xs font-sans font-medium uppercase tracking-tight">
                         {products[activeProject].urlId === 'laboratory' 
                           ? safeT('lab_link_text', 'View Library') 
                           : safeT('link', 'View Case Study')}
                       </span>
-                      <span className="text-white text-xs transition-transform group-hover:translate-x-1">
+                      <span className="text-teal-400 text-xs transition-transform group-hover:translate-x-1">
                         →
                       </span>
                     </button>
@@ -176,7 +179,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
             <div className="absolute top-1/2 -translate-y-1/2 right-4 lg:hidden z-20 pointer-events-none">
               <button 
                 onClick={(e) => { e.stopPropagation(); nextProject(); }}
-                className="pointer-events-auto size-10 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white hover:bg-black/70 hover:scale-105 transition-all shadow-lg"
+                className="pointer-events-auto size-10 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-xl border border-white/20 text-white hover:bg-black/80 hover:scale-105 transition-all shadow-xl"
                 aria-label="Siguiente proyecto"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

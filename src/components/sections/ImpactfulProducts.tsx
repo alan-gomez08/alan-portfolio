@@ -48,7 +48,6 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
     }
   ];
 
-  // --- Función para navegar en Mobile (Solo hacia adelante) ---
   const nextProject = () => {
     setActiveProject((prev) => (prev === products.length - 1 ? 0 : prev + 1));
   };
@@ -57,7 +56,6 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
     <section id="impactful-products" className="w-full flex justify-center pt-10 pb-24 border-t border-white/5 scroll-mt-14">
       <div className="w-full max-w-[1533px] px-6 md:px-40 flex flex-col lg:flex-row gap-12 lg:gap-8">
         
-        {/* Columna Izquierda */}
         <div className="w-full lg:w-5/12 flex flex-col justify-between">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -104,9 +102,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
           </div>
         </div>
 
-        {/* Columna Derecha */}
         <div className="w-full lg:w-7/12 lg:pl-12 flex items-center relative">
-          {/* Contenedor principal de la imagen: maneja las alturas dinámicas */}
           <div className="w-full h-[520px] md:h-[600px] lg:aspect-[4/3] lg:h-auto relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group shadow-2xl">
             
             <AnimatePresence mode="wait">
@@ -121,19 +117,12 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                 <img 
                   src={products[activeProject].image} 
                   alt={products[activeProject].title}
-                  // CORRECCIÓN 1: Eliminamos el grayscale para que los colores del mockup resalten. 
-                  // Mantenemos object-cover y el scale en hover.
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  // FIX: Agregamos object-top para priorizar la parte superior de la captura
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 
-                {/* CORRECCIÓN 2: Gradiente suavizado. Dejamos negro puro abajo (/90) para el texto, 
-                    pero bajamos el centro a /30 para que el mockup brille. */}
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/30 to-transparent flex flex-col justify-end p-6 pb-10 md:p-12 z-10 transition-opacity duration-500">
-                  
-                  {/* Área segura en mobile (pr-14) para que el texto nunca toque la flecha */}
                   <div className="flex flex-col lg:pr-0 pr-14">
-                    
-                    {/* Título del proyecto solo para Mobile */}
                     <div className="flex flex-col mb-4 lg:hidden">
                       <span className="text-teal-400 text-[10px] font-mono uppercase tracking-widest mb-1 drop-shadow-md">
                         {products[activeProject].category}
@@ -168,14 +157,11 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                         →
                       </span>
                     </button>
-
                   </div>
-
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* --- FLECHA DE NAVEGACIÓN MOBILE --- */}
             <div className="absolute top-1/2 -translate-y-1/2 right-4 lg:hidden z-20 pointer-events-none">
               <button 
                 onClick={(e) => { e.stopPropagation(); nextProject(); }}
@@ -187,10 +173,8 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                 </svg>
               </button>
             </div>
-
           </div>
 
-          {/* Indicador de progreso (Puntitos) Mobile */}
           <div className="absolute -bottom-6 left-0 right-0 flex justify-center gap-2 lg:hidden">
             {products.map((_, idx) => (
               <div 
@@ -199,9 +183,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
               />
             ))}
           </div>
-
         </div>
-
       </div>
     </section>
   );

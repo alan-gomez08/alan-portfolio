@@ -21,6 +21,9 @@ export function Navbar({ isCaseStudy = false, onBack, theme = 'dark' }: NavbarPr
     }
   }, [isOpen]);
 
+  // URL dinámica del CV según el idioma basado en los nombres exactos de tus archivos
+  const cvUrl = language === 'es' ? '/cv alan - español.pdf' : '/cv alan - ingles.pdf';
+
   // Definimos las rutas (solo se usan si NO es un case study)
   const navItems = [
     { key: 'products', href: '#impactful-products' },
@@ -115,7 +118,12 @@ export function Navbar({ isCaseStudy = false, onBack, theme = 'dark' }: NavbarPr
 
           {/* BOTÓN CV DESKTOP (Oculto en Case Study) */}
           {!isCaseStudy && (
-            <button className="h-8 px-3.5 bg-zinc-950 hover:bg-zinc-900 rounded-md shadow-[0px_0px_10px_0px_rgba(99,102,241,0.07)] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.05)] border border-transparent hover:border-white/5 outline outline-1 outline-white/10 text-gray-200 flex justify-center items-center gap-2 transition-all group">
+            <a 
+              href={cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-8 px-3.5 bg-zinc-950 hover:bg-zinc-900 rounded-md shadow-[0px_0px_10px_0px_rgba(99,102,241,0.07)] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.05)] border border-transparent hover:border-white/5 outline outline-1 outline-white/10 text-gray-200 flex justify-center items-center gap-2 transition-all group"
+            >
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-y-0.5 transition-transform">
                 <path d="M5 0.833374V7.50004M5 7.50004L2.08333 4.58337M5 7.50004L7.91667 4.58337"/>
                 <path d="M1.66667 9.16663H8.33333"/>
@@ -123,7 +131,7 @@ export function Navbar({ isCaseStudy = false, onBack, theme = 'dark' }: NavbarPr
               <span className="text-xs font-medium font-sans leading-4 tracking-tight">
                 {t('nav', 'cv')}
               </span>
-            </button>
+            </a>
           )}
         </div>
 
@@ -185,13 +193,18 @@ export function Navbar({ isCaseStudy = false, onBack, theme = 'dark' }: NavbarPr
             </div>
 
             {/* BOTÓN CV MOBILE */}
-            <button className="w-full h-14 bg-gray-200 hover:bg-white text-zinc-950 rounded-md font-bold text-sm flex justify-center items-center gap-2 transition-colors">
+            <a 
+              href={cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full h-14 bg-gray-200 hover:bg-white text-zinc-950 rounded-md font-bold text-sm flex justify-center items-center gap-2 transition-colors"
+            >
               <svg width="16" height="16" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 0.833374V7.50004M5 7.50004L2.08333 4.58337M5 7.50004L7.91667 4.58337"/>
                 <path d="M1.66667 9.16663H8.33333"/>
               </svg>
               <span>{t('nav', 'cv')}</span>
-            </button>
+            </a>
           </div>
         </div>
       )}

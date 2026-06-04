@@ -2,13 +2,16 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 
 export function Contact() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  // Links del Footer completamente dinámicos desde el LanguageContext
+  // URL dinámica del CV según el idioma
+  const cvUrl = language === 'es' ? '/cv alan - español.pdf' : '/cv alan - ingles.pdf';
+
+  // Links del Footer completamente dinámicos y con tus URLs
   const footerLinks = [
-    { name: t('contact', 'linkedin'), url: "#" }, // <-- Poné tu link a LinkedIn acá
-    { name: t('contact', 'behance'), url: "#" },  // <-- Poné tu link a Behance acá
-    { name: t('contact', 'resume'), url: "#" }    // <-- Poné el link a tu PDF del CV acá
+    { name: t('contact', 'linkedin'), url: "https://linkedin.com/in/gomezalan08" },
+    { name: t('contact', 'behance'), url: "https://behance.net/alangomez39" },
+    { name: t('contact', 'resume'), url: cvUrl } 
   ];
 
   return (

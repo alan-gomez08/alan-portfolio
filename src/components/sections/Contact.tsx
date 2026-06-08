@@ -41,9 +41,9 @@ export function Contact() {
           </p>
 
           <div className="flex flex-col items-center gap-4 mt-8">
-            {/* Botón de Email Premium */}
+            {/* Botón de Email Premium - AHORA CONECTADO A TU GMAIL */}
             <a 
-              href="mailto:hello@alan.design"
+              href="mailto:alangomez.design@gmail.com"
               className="group flex items-center gap-3 px-8 py-3.5 bg-teal-800/10 hover:bg-teal-800/20 rounded-xs border border-white/10 hover:border-teal-700/50 transition-all duration-300 shadow-[0_0_15px_rgba(20,184,166,0.05)] hover:shadow-[0_0_25px_rgba(20,184,166,0.15)]"
             >
               {/* Ícono de Email SVG */}

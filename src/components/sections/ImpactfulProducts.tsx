@@ -103,7 +103,8 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
         </div>
 
         <div className="w-full lg:w-7/12 lg:pl-12 flex items-center relative">
-          <div className="w-full h-[520px] md:h-[600px] lg:aspect-[4/3] lg:h-auto relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group shadow-2xl">
+          {/* Aumentamos un poco la altura base en mobile a 580px para que el texto respire bien */}
+          <div className="w-full h-[580px] md:h-[600px] lg:aspect-[4/3] lg:h-auto relative bg-zinc-900 rounded-xs overflow-hidden outline outline-1 outline-white/5 group shadow-2xl">
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -112,18 +113,25 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="absolute inset-0 w-full h-full"
+                // CLAVE: En mobile es flex-col, en desktop vuelve a ser un bloque absoluto superpuesto
+                className="absolute inset-0 w-full h-full flex flex-col lg:block"
               >
-                <img 
-                  src={products[activeProject].image} 
-                  alt={products[activeProject].title}
-                  // FIX: Agregamos object-top para priorizar la parte superior de la captura
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
+                {/* 1. IMAGEN (Arriba en Mobile, Ocupa todo en Desktop) */}
+                <div className="relative w-full h-[45%] lg:h-full lg:absolute lg:inset-0 overflow-hidden">
+                  <img 
+                    src={products[activeProject].image} 
+                    alt={products[activeProject].title}
+                    className="w-full h-full object-cover object-top lg:object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  {/* Sutil fade out para que se una perfecto con el contenedor negro de abajo (Solo Mobile) */}
+                  <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-zinc-950 to-transparent lg:hidden" />
+                </div>
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/30 to-transparent flex flex-col justify-end p-6 pb-10 md:p-12 z-10 transition-opacity duration-500">
+                {/* 2. TEXTO (Abajo con fondo sólido en Mobile, Superpuesto con gradiente en Desktop) */}
+                <div className="w-full h-[55%] lg:h-full bg-zinc-950 lg:bg-transparent lg:absolute lg:inset-0 lg:bg-gradient-to-t lg:from-zinc-950/90 lg:via-zinc-950/30 lg:to-transparent flex flex-col justify-center lg:justify-end p-6 md:p-12 z-10 transition-opacity duration-500">
                   <div className="flex flex-col lg:pr-0 pr-14">
-                    <div className="flex flex-col mb-4 lg:hidden">
+                    
+                    <div className="flex flex-col mb-3 lg:hidden">
                       <span className="text-teal-400 text-[10px] font-mono uppercase tracking-widest mb-1 drop-shadow-md">
                         {products[activeProject].category}
                       </span>
@@ -132,7 +140,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
                       </h3>
                     </div>
 
-                    <div className="flex flex-wrap gap-2 md:gap-3 mb-4">
+                    <div className="flex flex-wrap gap-2 md:gap-3 mb-3 lg:mb-4">
                       {products[activeProject].tags.map((tag, i) => (
                         <span key={i} className="px-3 py-1 bg-white/5 backdrop-blur-md rounded-full text-gray-200 text-[10px] font-mono uppercase tracking-wider border border-white/10 shadow-sm">
                           {tag}
@@ -146,7 +154,7 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
 
                     <button 
                       onClick={() => onOpenCaseStudy && products[activeProject].urlId && onOpenCaseStudy(products[activeProject].urlId)}
-                      className="group flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-6 shadow-sm"
+                      className="group flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all w-max cursor-pointer mt-4 lg:mt-6 shadow-sm"
                     >
                       <span className="text-gray-100 text-xs font-sans font-medium uppercase tracking-tight">
                         {products[activeProject].urlId === 'laboratory' 
@@ -162,10 +170,12 @@ export function ImpactfulProducts({ onOpenCaseStudy }: ImpactfulProductsProps) {
               </motion.div>
             </AnimatePresence>
 
-            <div className="absolute top-1/2 -translate-y-1/2 right-4 lg:hidden z-20 pointer-events-none">
+            {/* --- FLECHA DE NAVEGACIÓN MOBILE --- */}
+            {/* Movimos la flecha para que quede centrada en la zona del texto negro en mobile */}
+            <div className="absolute bottom-24 right-4 lg:top-1/2 lg:-translate-y-1/2 lg:bottom-auto lg:hidden z-20 pointer-events-none">
               <button 
                 onClick={(e) => { e.stopPropagation(); nextProject(); }}
-                className="pointer-events-auto size-10 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-xl border border-white/20 text-white hover:bg-black/80 hover:scale-105 transition-all shadow-xl"
+                className="pointer-events-auto size-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all shadow-xl"
                 aria-label="Siguiente proyecto"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

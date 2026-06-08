@@ -153,7 +153,8 @@ const translations = {
       title: "Let's talk about your next product.",
       desc: "Available for select freelance projects and full-time opportunities. Reach out to discuss how strategic design and engineering rigor can accelerate your development cycle.",
       btn: "Send Email",
-      subtext: "hello@alan.design · Usually responds in under 24h",
+      // CORRECCIÓN: Tu correo real en inglés
+      subtext: "alangomez.design@gmail.com · Usually responds in under 24h",
       motto: "Functional beauty, always.",
       resume: "Resume",
       linkedin: "LinkedIn",
@@ -457,7 +458,8 @@ const translations = {
       title: "Hablemos sobre tu próximo producto.",
       desc: "Disponible para proyectos freelance seleccionados y oportunidades full-time. Contactame para hablar sobre cómo el diseño estratégico y el rigor técnico pueden acelerar tu desarrollo.",
       btn: "Enviar Email",
-      subtext: "hello@alan.design · Usualmente respondo en menos de 24hs",
+      // CORRECCIÓN: Tu correo real en español
+      subtext: "alangomez.design@gmail.com · Usualmente respondo en menos de 24hs",
       motto: "Diseño funcional, siempre.",
       resume: "Descargar CV",
       linkedin: "LinkedIn",
